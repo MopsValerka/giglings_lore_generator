@@ -141,7 +141,7 @@ function RarityBadge({ rarity }) {
 }
 
 function CopyLoreBtn({ petId, stats, lore }) {
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = useState(false);
   const handleCopy = () => {
     const text = [
       `GIGLING ${petId} — GIGAVERSE LORE`,
