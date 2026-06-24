@@ -115,7 +115,7 @@ Rules:
 - End with one mysterious or ominous sentence
 - No headers, no quotes, just pure lore text`;
 
-    // ── Генерация имени ──────────────────────────────────────────────────
+    // ── 1. Сначала генерируем имя ────────────────────────────────────────
     const namePrompt = `Generate a creative, fun nickname (2-3 words MAX) for a Gigling racing character in Gigaverse.
 
 Their profile:
@@ -132,10 +132,20 @@ Rules:
 - 2-3 words MAXIMUM
 - Return ONLY the name, nothing else, no explanation`;
 
-    const [lore, generatedName] = await Promise.all([
-      generateLore(prompt),
-      generateLore(namePrompt),
-    ]);
+    const generatedName = await generateLore(namePrompt);
+
+    // ── 2. Потом лор — уже знает имя ─────────────────────────────────────
+    const lorePrompt = prompt
+      .replace(
+        'Write a SHORT, punchy lore fragment',
+        "The Gigling's name is '" + generatedName + '". Write a SHORT, punchy lore fragment'
+      )
+      .replace(
+        '- No headers, no quotes, just pure lore text',
+        '- Refer to this Gigling by their name "' + generatedName + '", not by number\n- No headers, no quotes, just pure lore text'
+      );
+
+    const lore = await generateLore(lorePrompt);
 
     res.json({ petId, petName, petImgUrl, rarity, gender, faction, factionColor, traits, stats, lore, generatedName });
 
