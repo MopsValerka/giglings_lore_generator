@@ -115,8 +115,29 @@ Rules:
 - End with one mysterious or ominous sentence
 - No headers, no quotes, just pure lore text`;
 
-    const lore = await generateLore(prompt);
-    res.json({ petId, petName, petImgUrl, rarity, gender, faction, factionColor, traits, stats, lore });
+    // ── Генерация имени ──────────────────────────────────────────────────
+    const namePrompt = `Generate a creative, fun nickname (2-3 words MAX) for a Gigling racing character in Gigaverse.
+
+Their profile:
+- ELO ${stats.elo ?? 'unranked'} (${(stats.elo ?? 1000) >= 1400 ? 'strong competitor' : (stats.elo ?? 1000) >= 1200 ? 'average racer' : 'underdog'})
+- ${stats.racesRun ?? '?'} races, ${stats.wins ?? '?'} wins, ${stats.podiums ?? '?'} podiums
+- ${rarity ?? 'Unknown'} rarity, ${gender ?? 'unknown'}
+- Faction: ${faction && faction !== 'None' ? faction : 'None (lone wolf)'}
+${traitStr ? `- Traits: ${traitStr}` : ''}
+
+Rules:
+- Reference pop culture: movies, anime, games, memes, sports legends, music, TV shows
+- Match their personality and stats (high wins = legendary feel, underdog = scrappy feel, Clutch trait = comeback king, etc.)
+- Be creative and fun, avoid generic fantasy names
+- 2-3 words MAXIMUM
+- Return ONLY the name, nothing else, no explanation`;
+
+    const [lore, generatedName] = await Promise.all([
+      generateLore(prompt),
+      generateLore(namePrompt),
+    ]);
+
+    res.json({ petId, petName, petImgUrl, rarity, gender, faction, factionColor, traits, stats, lore, generatedName });
 
   } catch (err) {
     console.error(`[/api/lore/${petId}]`, err.message);
