@@ -63,7 +63,7 @@ giglings-lore/
 
 | Endpoint | Description |
 |----------|-------------|
-| `GET /pets?ids={id}` | Pet metadata — ELO, wins, races, rarity, faction, traits, NFT image |
-| `GET /pets/{id}/stats` | Race stats — podiums, total races, last 15 race results |
+| `GET /pets?ids={id}` | Pet metadata - ELO, wins, races, rarity, faction, traits, NFT image |
+| `GET /pets/{id}/stats` | Race stats - podiums, total races, last 15 race results |
 
 ---
