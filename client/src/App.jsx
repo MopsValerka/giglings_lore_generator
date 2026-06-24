@@ -182,7 +182,7 @@ function FactionBadge({ faction, factionColor }) {
   );
 }
 
-function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, factionColor, lore, onClose }) {
+function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, factionColor, lore, generatedName, onClose }) {
   const winRate = (stats.racesRun && stats.wins) ? Math.round((stats.wins / stats.racesRun) * 100) : 0;
   const hasStats = stats.racesRun != null || stats.wins != null || stats.elo != null;
 
@@ -227,8 +227,10 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
 
         {/* Content */}
         <div style={{ padding: '16px 20px 20px' }}>
-          {petName && !petName.startsWith('#') && (
-            <div style={{ fontSize: 15, color: '#e8f0ff', letterSpacing: '0.08em', marginBottom: 12, textAlign: 'center' }}>{petName.toUpperCase()}</div>
+          {generatedName && (
+            <div style={{ fontSize: 16, color: (faction && faction !== 'None') ? factionColor : '#e8f0ff', letterSpacing: '0.1em', marginBottom: 12, textAlign: 'center', textShadow: (faction && faction !== 'None') ? `0 0 12px ${factionColor}60` : 'none' }}>
+              {generatedName.toUpperCase()}
+            </div>
           )}
 
           {/* Stats */}
@@ -307,12 +309,13 @@ export default function App() {
       }
       const data = await res.json();
 
-      const { petName, petImgUrl, stats, rarity, faction, factionColor, lore } = data;
+      const { petName, petImgUrl, stats, rarity, faction, factionColor, lore, generatedName } = data;
 
       // ── Show card + save inscription ─────────────────────────────────
-      setLoreCard({ petId: displayId, rawId: petId, petName, petImgUrl, stats, rarity, faction, factionColor, lore });
+      setLoreCard({ petId: displayId, rawId: petId, petName, petImgUrl, stats, rarity, faction, factionColor, lore, generatedName });
       setInscriptions(prev => [{
         id: displayId,
+        rawId: petId,
         date: new Date().toISOString().split('T')[0],
         preview: lore,
         petImgUrl: data.petImgUrl ?? null,
@@ -320,6 +323,9 @@ export default function App() {
         faction: data.faction ?? null,
         factionColor: data.factionColor ?? '#6b7280',
         stats: data.stats,
+        lore,
+        petName,
+        generatedName,
       }, ...prev]);
       setGiglingId('');
 
@@ -469,7 +475,8 @@ export default function App() {
               const filtered = q ? inscriptions.filter(i => i.id.replace('#','').includes(q)) : inscriptions;
               if (!filtered.length) return <div style={{ textAlign: 'center', color: '#507090', padding: '40px 0', fontSize: 13, letterSpacing: '0.08em' }}>NOT FOUND</div>;
               return filtered.map((item, i) => (
-                <div key={item.id + i} style={{ ...s.inscCard, display: 'flex', gap: 14, alignItems: 'flex-start' }}
+                <div key={item.id + i} style={{ ...s.inscCard, display: 'flex', gap: 14, alignItems: 'flex-start', cursor: 'pointer' }}
+                  onClick={() => setLoreCard({ petId: item.id, rawId: item.rawId, petName: item.petName, petImgUrl: item.petImgUrl, stats: item.stats, rarity: item.rarity, faction: item.faction, factionColor: item.factionColor, lore: item.lore, generatedName: item.generatedName })}
                   onMouseEnter={e => e.currentTarget.style.borderColor = '#2a5080'}
                   onMouseLeave={e => e.currentTarget.style.borderColor = '#1a3050'}>
                   <div style={{ width: 56, height: 56, background: '#060d1a', border: '1px solid #1a3050', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -480,7 +487,10 @@ export default function App() {
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                      <span style={{ color: '#ff2020', fontSize: 14 }}>{item.id}</span>
+                      <div>
+                        <span style={{ color: '#ff2020', fontSize: 14 }}>{item.id}</span>
+                        {item.generatedName && <span style={{ color: item.factionColor ?? '#8090a0', fontSize: 11, marginLeft: 8, letterSpacing: '0.06em' }}>{item.generatedName}</span>}
+                      </div>
                       <span style={{ color: '#507090', fontSize: 11 }}>{item.date}</span>
                     </div>
                     {(item.rarity || item.faction) && (
