@@ -254,7 +254,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
             </div>
           )}
 
-          <div style={{ fontSize: 12, lineHeight: 1.75, color: '#a0b8cc', letterSpacing: '0.04em', marginBottom: 18, minHeight: 60 }}>
+          <div style={{ fontSize: 13, lineHeight: 1.8, color: '#c8dcea', letterSpacing: '0.03em', marginBottom: 18, minHeight: 60 }}>
             {lore}
           </div>
 
