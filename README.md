@@ -1,8 +1,8 @@
-# Giglings Lore
+# Giglings Lore Generator
 
-AI-powered lore generator for Gigling NFT racing characters in the Gigaverse ecosystem.
+AI-powered lore generator for Giglings in the world of Gigaverse.
 
-Enter any Gigling ID and get a unique AI-generated name + lore based on its real on-chain stats — ELO, race history, faction, rarity, and traits.
+Enter any Gigling ID and get a unique AI-generated name + lore based on its real on-chain stats: ELO, race history, faction, rarity and traits.
 
 **Built for GIGATHON hackathon.**
 
@@ -11,9 +11,9 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 ## What it does
 
 - Fetches live stats from the Gigaverse Racing API (ELO, wins, podiums, traits, faction, rarity)
-- Generates a unique pop-culture-inspired name based on the Gigling's profile
-- Generates a short lore fragment written like a racing legend's epitaph
-- Displays the Gigling's actual NFT image, faction badge with color, and stat card
+- Generates a unique name based on the Gigling's profile
+- Generates a short lore fragment legend
+- Displays the Gigling's actual NFT image, faction badge with color and stat card
 - Saves all generated lore in a searchable inscriptions archive
 - Copy lore button for easy sharing
 
