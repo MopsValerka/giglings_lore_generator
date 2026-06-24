@@ -53,9 +53,17 @@ giglings-lore/
 
 ## API endpoints
 
+**Our server:**
+
 | Endpoint | Description |
 |----------|-------------|
 | `GET /api/lore/:petId` | Fetch stats + generate name and lore for a Gigling |
-| `GET /health` | Server health check |
+
+**Gigaverse Racing API (`https://gigaverse.io/api/racing`):**
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /pets?ids={id}` | Pet metadata — ELO, wins, races, rarity, faction, traits, NFT image |
+| `GET /pets/{id}/stats` | Race stats — podiums, total races, last 15 race results |
 
 ---
