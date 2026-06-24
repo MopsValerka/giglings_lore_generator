@@ -127,6 +127,6 @@ Rules:
 app.get('/health', (_, res) => res.json({ ok: true, model: OR_MODEL }));
 
 app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (_, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')));
+app.get('/{*path}', (_, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')));
 
 app.listen(PORT, () => console.log(`🎲 Giglings Lore → http://localhost:${PORT} [${OR_MODEL}]`));
