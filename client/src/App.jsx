@@ -239,6 +239,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
       }}
     >
       <div
+        ref={cardRef}
         onClick={e => e.stopPropagation()}
         style={{
           position: 'relative', width: 380,
@@ -413,8 +414,8 @@ export default function App() {
     },
     leftPanel: { flex: '0 0 360px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.8, fontSize: 17, letterSpacing: '0.05em', color: '#c0c8d8' },
-    sideText: { fontSize: 18, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.8, color: '#b0bcc8', fontFamily: "'Bitcell', 'Courier New', monospace" },
+    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 22, letterSpacing: '0.05em', color: '#c0c8d8' },
+    sideText: { fontSize: 22, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Bitcell', 'Courier New', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
       color: '#e0f0ff', padding: '16px 17px', fontSize: 18,
@@ -428,7 +429,7 @@ export default function App() {
     },
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
-    whatIs: { fontSize: 16, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#00e5ff', marginBottom: 14 },
+    whatIs: { fontSize: 20, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#00e5ff', marginBottom: 14 },
     inscPage: { flex: 1, padding: '30px 40px', maxWidth: 900, margin: '0 auto', width: '100%', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
@@ -469,7 +470,7 @@ export default function App() {
                 BUT DID YOU ALSO KNEW THAT EVERY GIGLINGS HAS OWN UNIQUE <span style={s.lore}>LORE</span>?
               </div>
               <div>
-                <div style={{ marginBottom: 8, fontSize: 16, color: '#507090', letterSpacing: '0.08em' }}>ENTER YOUR GIGLING #</div>
+                <div style={{ marginBottom: 8, fontSize: 20, color: '#507090', letterSpacing: '0.08em' }}>ENTER YOUR GIGLING #</div>
                 <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
