@@ -62,16 +62,16 @@ const CSS = `
 `;
 
 const SPARKLE_DATA = [
-  { x: 8, y: 12, color: '#6a30c0', size: 15, delay: 0 },
-  { x: 80, y: 8, color: '#00c8c8', size: 20, delay: 0.4 },
-  { x: 15, y: 55, color: '#8040d0', size: 12, delay: 0.8 },
-  { x: 88, y: 40, color: '#00d0e0', size: 18, delay: 0.2 },
-  { x: 25, y: 85, color: '#6a30c0', size: 15, delay: 1.0 },
-  { x: 72, y: 78, color: '#9060e0', size: 20, delay: 0.6 },
-  { x: 50, y: 6, color: '#00a8c0', size: 15, delay: 0.3 },
-  { x: 5, y: 75, color: '#7040b8', size: 10, delay: 0.9 },
-  { x: 93, y: 65, color: '#00c0d8', size: 15, delay: 0.7 },
-  { x: 40, y: 92, color: '#8050d0', size: 12, delay: 1.2 },
+  { x: 8, y: 12, color: '#6a30c0', size: 22, delay: 0 },
+  { x: 80, y: 8, color: '#00c8c8', size: 28, delay: 0.4 },
+  { x: 15, y: 55, color: '#8040d0', size: 18, delay: 0.8 },
+  { x: 88, y: 40, color: '#00d0e0', size: 26, delay: 0.2 },
+  { x: 25, y: 85, color: '#6a30c0', size: 22, delay: 1.0 },
+  { x: 72, y: 78, color: '#9060e0', size: 28, delay: 0.6 },
+  { x: 50, y: 6, color: '#00a8c0', size: 22, delay: 0.3 },
+  { x: 5, y: 75, color: '#7040b8', size: 16, delay: 0.9 },
+  { x: 93, y: 65, color: '#00c0d8', size: 22, delay: 0.7 },
+  { x: 40, y: 92, color: '#8050d0', size: 18, delay: 1.2 },
 ];
 
 function Sparkle({ x, y, color, size, delay }) {
@@ -156,27 +156,34 @@ function CopyCardBtn({ cardRef }) {
     try {
       const canvas = await html2canvas(cardRef.current, {
         useCORS: true,
+        allowTaint: true,
         backgroundColor: '#0a1628',
         scale: 2,
         logging: false,
+        imageTimeout: 10000,
       });
       canvas.toBlob(async (blob) => {
+        if (!blob) { setStatus('error'); setTimeout(() => setStatus('idle'), 2000); return; }
+        // Пробуем clipboard API
         try {
           await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
           setStatus('done');
         } catch {
+          // Фолбек — скачать файл
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
           a.download = 'gigling-lore.png';
+          document.body.appendChild(a);
           a.click();
+          document.body.removeChild(a);
           URL.revokeObjectURL(url);
           setStatus('done');
         }
         setTimeout(() => setStatus('idle'), 2500);
       }, 'image/png');
     } catch (e) {
-      console.error(e);
+      console.error('html2canvas error:', e);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 2000);
     }
