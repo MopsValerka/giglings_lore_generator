@@ -150,8 +150,9 @@ function RarityBadge({ rarity }) {
 function CopyCardBtn({ cardRef }) {
   const [status, setStatus] = useState('idle');
 
-  const handleCopy = async () => {
-    if (!cardRef.current) return;
+  const handleCopy = async (e) => {
+    e.stopPropagation();
+    if (!cardRef.current) { console.log("cardRef is null"); return; }
     setStatus('loading');
     try {
       const canvas = await html2canvas(cardRef.current, {
@@ -413,7 +414,7 @@ export default function App() {
     leftPanel: { flex: '0 0 360px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
     rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.8, fontSize: 17, letterSpacing: '0.05em', color: '#c0c8d8' },
-    sideText: { fontSize: 17, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.8, color: '#b0bcc8', fontFamily: "'Bitcell', 'Courier New', monospace" },
+    sideText: { fontSize: 18, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.8, color: '#b0bcc8', fontFamily: "'Bitcell', 'Courier New', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
       color: '#e0f0ff', padding: '16px 17px', fontSize: 18,
@@ -443,7 +444,7 @@ export default function App() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 40, height: 40, imageRendering: 'pixelated' }}/>
             <span style={{ fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-              GIGLING <span style={s.lore}>LORE</span> GENERATOR
+              GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
             </span>
           </div>
           <button style={s.inscBtn}
@@ -456,7 +457,7 @@ export default function App() {
 
         {view === 'main' && (
           <div style={{ textAlign: 'center', padding: '22px 0 8px', fontSize: 38, letterSpacing: '0.12em', textTransform: 'uppercase', position: 'relative' }}>
-            GIGLING <span style={s.lore}>LORE</span> GENERATOR
+            GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
           </div>
         )}
 
