@@ -226,16 +226,42 @@ function FactionBadge({ faction, factionColor }) {
   );
 }
 
+// Рисует градиент фракции через Canvas — одинаково на экране и в копии
+function FactionGlow({ factionColor, faction }) {
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    if (faction && faction !== 'None' && factionColor) {
+      const grad = ctx.createRadialGradient(W*0.5, H*0.65, 0, W*0.5, H*0.5, W*0.75);
+      const hex = factionColor.replace('#','');
+      const r = parseInt(hex.slice(0,2),16), g = parseInt(hex.slice(2,4),16), b = parseInt(hex.slice(4,6),16);
+      grad.addColorStop(0, `rgba(${r},${g},${b},0.8)`);
+      grad.addColorStop(0.35, `rgba(${r},${g},${b},0.33)`);
+      grad.addColorStop(1, `rgba(6,13,26,0)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+    } else {
+      const grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, 'rgba(15,29,66,1)');
+      grad.addColorStop(1, 'rgba(6,10,24,1)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+    }
+  }, [factionColor, faction]);
+  return <canvas ref={canvasRef} width={400} height={400} style={{ position:'absolute', inset:0, width:'100%', height:'100%' }} />;
+}
+
+
 // ── ЕДИНЫЙ КОМПОНЕНТ КАРТОЧКИ ─────────────────────────────────────────
 const RARITY_COLORS = { legendary:'#ffd700', epic:'#c040ff', rare:'#4080ff', uncommon:'#40c060', common:'#8090a0', relic:'#ff8040', giga:'#ff2020' };
 
 function GiglingCard({ petId, rawId, petImgUrl, stats, rarity, faction, factionColor, lore, generatedName, compact = false }) {
   const fc       = faction && faction !== 'None' ? factionColor : '#4a4a5a';
   const rarityColor = RARITY_COLORS[(rarity||'common').toLowerCase()] || '#8090a0';
-  const imageBg  = faction && faction !== 'None'
-    ? `radial-gradient(ellipse at 50% 65%, ${factionColor}cc 0%, ${factionColor}55 35%, #060d1a 70%)`
-    : 'linear-gradient(180deg, #0f1d42 0%, #060a18 100%)';
-
   const W  = compact ? 200 : 340;
   const S  = compact
     ? { name: 9, id: 7, stat: 11, statLabel: 7, lore: 8, pad: '10px 12px', rarity: 7, logoSize: 0 }
@@ -244,7 +270,8 @@ function GiglingCard({ petId, rawId, petImgUrl, stats, rarity, faction, factionC
   return (
     <div style={{ width: W, background: '#161020', border: `2px solid ${fc}`, borderRadius: 8, overflow: 'hidden', boxShadow: faction && faction !== 'None' ? `0 0 ${compact ? 16 : 30}px ${fc}66` : 'none' }}>
       {/* Картинка */}
-      <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: imageBg, overflow: 'hidden' }}>
+      <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: '#060d1a', overflow: 'hidden' }}>
+        <FactionGlow factionColor={factionColor} faction={faction} />
         {/* Статичные партиклы — одинаковы и на экране и в копии */}
         {[{x:12,y:15,c:'#6030c0',s:compact?8:16},{x:78,y:10,c:'#00b8c8',s:compact?10:20},{x:18,y:70,c:'#7040d0',s:compact?7:14},{x:85,y:45,c:'#00c0d8',s:compact?9:18},{x:30,y:85,c:'#6030c0',s:compact?8:16},{x:70,y:80,c:'#9050e0',s:compact?10:20},{x:50,y:8,c:'#00a0b8',s:compact?8:16},{x:88,y:72,c:'#00b0d0',s:compact?8:16}].map((p,i) => (
           <div key={i} style={{ position:'absolute', left:`${p.x}%`, top:`${p.y}%`, width:p.s, height:p.s, color:p.c, fontSize:p.s, lineHeight:1, userSelect:'none', pointerEvents:'none' }}>✦</div>
@@ -440,7 +467,7 @@ export default function App() {
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
     whatIs: { fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Silkscreen', monospace" },
-    inscPage: { flex: 1, padding: '30px 40px', maxWidth: 900, margin: '0 auto', width: '100%', animation: 'fadeIn 0.4s ease' },
+    inscPage: { flex: 1, padding: '30px 40px', width: '100%', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
 
