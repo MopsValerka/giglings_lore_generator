@@ -528,10 +528,10 @@ export default function App() {
             <div style={s.rightPanel}>
               <div style={s.whatIs}>WHAT IS GIGLING RACING?</div>
               <p style={{ margin: '0 0 14px', fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 14, lineHeight: 1.9 }}>
-                Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
+                Race your Gigling - a lovable two-legged horse - against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
-              <p style={{ margin: 0, fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 22 }}>Built by Gigaverse.</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
             </div>
           </div>
 
