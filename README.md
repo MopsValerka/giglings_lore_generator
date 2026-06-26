@@ -13,9 +13,9 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 - Fetches live stats from the Gigaverse Racing API (ELO, wins, podiums, traits, faction, rarity)
 - Generates a unique name based on the Gigling's profile
 - Generates a short lore fragment legend
-- Displays the Gigling's actual NFT image, faction badge with color and stat card
+- Displays the Gigling's actual NFT image, faction, rarity and racing stats
 - Saves all generated lore in a searchable inscriptions archive
-- Copy lore button for easy sharing
+- Copy button for easy lore card sharing
 
 ---
 
