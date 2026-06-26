@@ -131,7 +131,7 @@ function PetImage({ imgUrl }) {
       src={imgUrl}
       alt="Gigling"
       onError={() => setFailed(true)}
-      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '85%', height: 'auto', objectFit: 'contain', imageRendering: 'pixelated', filter: 'drop-shadow(0 0 20px rgba(80,140,255,0.35))' }}
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '85%', height: 'auto', objectFit: 'contain', imageRendering: 'pixelated', filter: 'brightness(1.15) contrast(1.08) saturate(1.2) drop-shadow(0 0 24px rgba(100,180,255,0.5))' }}
     />
   );
 }
@@ -261,7 +261,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
 
 
         {/* Pet image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: '#060d1a', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: 'radial-gradient(ellipse at 50% 30%, #0d1535 0%, #060d1a 70%)', overflow: 'hidden' }}>
           
           <PetImage imgUrl={petImgUrl} />
           <div style={{ position: 'absolute', top: 12, left: 14, fontSize: 13, color: '#ff2020', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(255,32,32,0.6)' }}>{petId}</div>
@@ -274,7 +274,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         {/* Content */}
         <div style={{ padding: '16px 20px 20px' }}>
           {generatedName && (
-            <div style={{ fontSize: 16, color: (faction && faction !== 'None') ? factionColor : '#e8f0ff', letterSpacing: '0.1em', marginBottom: 12, textAlign: 'center', textShadow: (faction && faction !== 'None') ? `0 0 12px ${factionColor}60` : 'none' }}>
+            <div style={{ fontSize: 14, color: (faction && faction !== 'None') ? factionColor : '#e8f0ff', letterSpacing: '0.1em', marginBottom: 12, textAlign: 'center', textShadow: (faction && faction !== 'None') ? `0 0 12px ${factionColor}60` : 'none' }}>
               {generatedName.toUpperCase()}
             </div>
           )}
@@ -300,7 +300,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
             </div>
           )}
 
-          <div style={{ fontSize: 16, lineHeight: 1.85, color: '#c8dcea', letterSpacing: '0.01em', marginBottom: 18, minHeight: 60, fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontWeight: 400 }}>
+          <div style={{ fontSize: 14, lineHeight: 1.85, color: '#c8dcea', letterSpacing: '0.01em', marginBottom: 18, minHeight: 60, fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontWeight: 400 }}>
             {lore}
           </div>
 
@@ -419,22 +419,22 @@ export default function App() {
     },
     leftPanel: { flex: '0 0 400px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 16, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
-    sideText: { fontSize: 16, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
+    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
+    sideText: { fontSize: 14, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
-      color: '#e0f0ff', padding: '14px 17px', fontSize: 16, fontFamily: "'Silkscreen', monospace",
+      color: '#e0f0ff', padding: '14px 17px', fontSize: 14, fontFamily: "'Silkscreen', monospace",
       letterSpacing: '0.08em', textTransform: 'uppercase', outline: 'none', marginTop: 4,
     },
     genBtn: {
       width: '100%', background: 'none', border: '1px solid #e0e0e0',
-      color: '#e0e0e0', padding: '14px', fontSize: 16, fontFamily: "'Silkscreen', monospace",
+      color: '#e0e0e0', padding: '14px', fontSize: 14, fontFamily: "'Silkscreen', monospace",
       letterSpacing: '0.1em', textTransform: 'uppercase',
       cursor: 'pointer', marginTop: 4, transition: 'all 0.2s',
     },
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
-    whatIs: { fontSize: 16, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Silkscreen', monospace" },
+    whatIs: { fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Silkscreen', monospace" },
     inscPage: { flex: 1, padding: '30px 40px', maxWidth: 900, margin: '0 auto', width: '100%', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
@@ -475,7 +475,7 @@ export default function App() {
                 DID YOU KNOW EVERY GIGLING HAS ITS OWN UNIQUE <span style={s.lore}>LORE</span>?
               </div>
               <div>
-                <div style={{ marginBottom: 8, fontSize: 16, color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
+                <div style={{ marginBottom: 8, fontSize: 14, color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
                 <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
@@ -501,7 +501,7 @@ export default function App() {
             {/* RIGHT */}
             <div style={s.rightPanel}>
               <div style={s.whatIs}>WHAT IS GIGLING RACING?</div>
-              <p style={{ margin: '0 0 14px', fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 16, lineHeight: 1.9 }}>
+              <p style={{ margin: '0 0 14px', fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 14, lineHeight: 1.9 }}>
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
