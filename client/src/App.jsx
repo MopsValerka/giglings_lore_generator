@@ -237,9 +237,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
       style={{
         position: 'fixed', inset: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: 'rgba(4,8,20,0.75)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
+        background: 'rgba(0,0,0,0.92)',
         animation: 'overlayIn 0.4s ease',
         padding: 16,
       }}
@@ -249,7 +247,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         ref={cardRef}
         style={{
           position: 'relative', width: 380,
-          background: factionColor && faction !== 'None' ? `linear-gradient(180deg, ${factionColor}22 0%, #060a14 20%, #060a14 100%)` : 'linear-gradient(180deg, #0d1535 0%, #050810 100%)',
+          background: '#161020',
           border: `2px solid ${factionColor && faction !== 'None' ? factionColor : '#3a3a4a'}`,
           boxShadow: `0 0 60px rgba(0,100,255,0.12), 0 0 120px rgba(0,60,200,0.07), inset 0 1px 0 rgba(255,255,255,0.06)${factionColor && faction !== 'None' ? ', inset 0 0 60px ' + factionColor + '18' : ''}`,
           animation: 'cardAppear 0.45s cubic-bezier(0.22,1,0.36,1)',
@@ -261,7 +259,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
 
 
         {/* Pet image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 65%, ${factionColor}cc 0%, ${factionColor}55 35%, #060d1a 70%)` : 'linear-gradient(180deg, #0f1d42 0%, #080e20 70%, #060a18 100%)', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 65%, ${factionColor}cc 0%, ${factionColor}55 35%, #060d1a 70%)` : 'linear-gradient(180deg, #0f1d42 0%, #080e20 70%, #060a18 100%)', overflow: 'hidden' }}>
           
           <PetImage imgUrl={petImgUrl} />
           <div style={{ position: 'absolute', top: 12, left: 14, fontSize: 13, color: '#ff2020', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(255,32,32,0.6)' }}>{petId}</div>
@@ -538,7 +536,7 @@ export default function App() {
                   {filtered.map((item, i) => (
                     <div key={item.id + i}
                       onClick={() => setLoreCard({ petId: item.id, rawId: item.rawId, petName: item.petName, petImgUrl: item.petImgUrl, stats: item.stats, rarity: item.rarity, faction: item.faction, factionColor: item.factionColor, lore: item.lore, generatedName: item.generatedName })}
-                      style={{ cursor: 'pointer', flexShrink: 0, width: 200, border: `2px solid ${item.faction && item.faction !== 'None' ? item.factionColor : '#4a4a5a'}`, background: item.faction && item.faction !== 'None' ? `linear-gradient(180deg, ${item.factionColor}18 0%, #091528 25%, #091528 100%)` : 'linear-gradient(180deg, #0d1535 0%, #060a18 100%)', borderRadius: 8, overflow: 'hidden', boxShadow: item.faction && item.faction !== 'None' ? `0 0 20px ${item.factionColor}55` : '0 0 10px rgba(74,74,90,0.3)' }}>
+                      style={{ cursor: 'pointer', flexShrink: 0, width: 200, border: `2px solid ${item.faction && item.faction !== 'None' ? item.factionColor : '#4a4a5a'}`, background: '#161020', borderRadius: 8, overflow: 'hidden', boxShadow: item.faction && item.faction !== 'None' ? `0 0 20px ${item.factionColor}55` : '0 0 10px rgba(74,74,90,0.3)' }}>
                       <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: item.faction && item.faction !== 'None' ? `radial-gradient(ellipse at 50% 70%, ${item.factionColor}88 0%, ${item.factionColor}22 50%, #060d1a 80%)` : 'linear-gradient(180deg, #0f1d42 0%, #060a18 100%)', overflow: 'hidden' }}>
                         {item.petImgUrl && <img src={item.petImgUrl} alt={item.id} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '80%', height: 'auto', objectFit: 'contain', imageRendering: 'pixelated' }} onError={e => { e.target.style.display='none'; }}/>}
                         <div style={{ position: 'absolute', top: 8, left: 10, fontSize: 10, color: '#ff2020', letterSpacing: '0.08em' }}>{item.id}</div>
