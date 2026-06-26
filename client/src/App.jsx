@@ -261,7 +261,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
 
 
         {/* Pet image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 70%, ${factionColor}88 0%, ${factionColor}33 40%, #060d1a 75%)` : 'radial-gradient(ellipse at 50% 60%, #2a2a3a 0%, #060d1a 70%)', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 70%, ${factionColor}88 0%, ${factionColor}33 40%, #060d1a 75%)` : 'radial-gradient(ellipse at 50% 60%, #1e1535 0%, #130d28 40%, #060d1a 75%)', overflow: 'hidden' }}>
           
           <PetImage imgUrl={petImgUrl} />
           <div style={{ position: 'absolute', top: 12, left: 14, fontSize: 13, color: '#ff2020', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(255,32,32,0.6)' }}>{petId}</div>
@@ -394,7 +394,7 @@ export default function App() {
   const handleKeyDown = (e) => { if (e.key === 'Enter') handleGenerate(); };
 
   const s = {
-    lore: { color: '#ff2020', animation: 'pulse-red 3s ease-in-out infinite', fontSize: 10 },
+    lore: { color: '#ff2020', animation: 'pulse-red 3s ease-in-out infinite' },
     root: {
       minHeight: '100vh',
       background: 'linear-gradient(180deg, #060d1a 0%, #0a1428 50%, #060d1a 100%)',
