@@ -502,7 +502,7 @@ export default function App() {
               </div>
               <div>
                 <div style={{ marginBottom: 8, fontSize: 14, color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
-                <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
+                <input ref={inputRef} style={s.input} placeholder="e.g. 7777"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
                   onKeyDown={handleKeyDown} maxLength={6}
