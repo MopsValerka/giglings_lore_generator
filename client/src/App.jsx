@@ -155,14 +155,22 @@ function CopyCardBtn({ cardRef }) {
     if (!cardRef.current) { console.log("cardRef is null"); return; }
     setStatus('loading');
     try {
-      const canvas = await html2canvas(cardRef.current, {
+      // Клонируем за экраном — убираем влияние backdrop-filter оверлея
+      const clone = cardRef.current.cloneNode(true);
+      clone.style.position = 'fixed';
+      clone.style.top = '-9999px';
+      clone.style.left = '-9999px';
+      clone.style.width = cardRef.current.offsetWidth + 'px';
+      document.body.appendChild(clone);
+      const canvas = await html2canvas(clone, {
         useCORS: true,
         allowTaint: true,
-        backgroundColor: '#0a1628',
+        backgroundColor: '#091528',
         scale: 2,
         logging: false,
         imageTimeout: 10000,
       });
+      document.body.removeChild(clone);
       canvas.toBlob(async (blob) => {
         try {
           await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
@@ -242,7 +250,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         style={{
           position: 'relative', width: 380,
           background: '#091528',
-          border: `1px solid ${factionColor && faction !== 'None' ? factionColor + '99' : 'rgba(100,160,255,0.2)'}`,
+          border: `2px solid ${factionColor && faction !== 'None' ? factionColor : 'rgba(100,160,255,0.3)'}`,
           boxShadow: `0 0 60px rgba(0,100,255,0.12), 0 0 120px rgba(0,60,200,0.07), inset 0 1px 0 rgba(255,255,255,0.06)${factionColor && faction !== 'None' ? ', inset 0 0 60px ' + factionColor + '18' : ''}`,
           animation: 'cardAppear 0.45s cubic-bezier(0.22,1,0.36,1)',
           overflow: 'hidden',
@@ -292,7 +300,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
             </div>
           )}
 
-          <div style={{ fontSize: 13, lineHeight: 1.85, color: '#c8dcea', letterSpacing: '0.01em', marginBottom: 18, minHeight: 60, fontFamily: "'Bitcell', 'Courier New', monospace", textTransform: 'none', fontWeight: 400 }}>
+          <div style={{ fontSize: 16, lineHeight: 1.85, color: '#c8dcea', letterSpacing: '0.01em', marginBottom: 18, minHeight: 60, fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontWeight: 400 }}>
             {lore}
           </div>
 
@@ -409,10 +417,10 @@ export default function App() {
       flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
       gap: 32, padding: '30px 20px', position: 'relative',
     },
-    leftPanel: { flex: '0 0 360px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
+    leftPanel: { flex: '0 0 400px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
     rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 16, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
-    sideText: { fontSize: 16, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
+    sideText: { fontSize: 16, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
       color: '#e0f0ff', padding: '14px 17px', fontSize: 16, fontFamily: "'Silkscreen', monospace",
@@ -464,7 +472,7 @@ export default function App() {
             {/* LEFT */}
             <div style={s.leftPanel}>
               <div style={s.sideText}>
-                BUT DID YOU ALSO KNEW THAT EVERY GIGLINGS HAS OWN UNIQUE <span style={s.lore}>LORE</span>?
+                DID YOU KNOW EVERY GIGLING HAS ITS OWN UNIQUE <span style={s.lore}>LORE</span>?
               </div>
               <div>
                 <div style={{ marginBottom: 8, fontSize: 16, color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
