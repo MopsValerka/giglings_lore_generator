@@ -250,7 +250,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         style={{
           position: 'relative', width: 380,
           background: '#091528',
-          border: `2px solid ${factionColor && faction !== 'None' ? factionColor : 'rgba(100,160,255,0.3)'}`,
+          border: `2px solid ${factionColor && faction !== 'None' ? factionColor : '#4a4a5a'}`,
           boxShadow: `0 0 60px rgba(0,100,255,0.12), 0 0 120px rgba(0,60,200,0.07), inset 0 1px 0 rgba(255,255,255,0.06)${factionColor && faction !== 'None' ? ', inset 0 0 60px ' + factionColor + '18' : ''}`,
           animation: 'cardAppear 0.45s cubic-bezier(0.22,1,0.36,1)',
           overflow: 'hidden',
@@ -261,7 +261,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
 
 
         {/* Pet image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: 'radial-gradient(ellipse at 50% 30%, #0d1535 0%, #060d1a 70%)', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 60%, ${factionColor}55 0%, ${factionColor}22 30%, #060d1a 70%)` : 'radial-gradient(ellipse at 50% 60%, #2a2a3a 0%, #060d1a 70%)', overflow: 'hidden' }}>
           
           <PetImage imgUrl={petImgUrl} />
           <div style={{ position: 'absolute', top: 12, left: 14, fontSize: 13, color: '#ff2020', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(255,32,32,0.6)' }}>{petId}</div>
@@ -394,7 +394,7 @@ export default function App() {
   const handleKeyDown = (e) => { if (e.key === 'Enter') handleGenerate(); };
 
   const s = {
-    lore: { color: '#ff2020', animation: 'pulse-red 3s ease-in-out infinite' },
+    lore: { color: '#ff2020', animation: 'pulse-red 3s ease-in-out infinite', fontFamily: "'Silkscreen', monospace", fontSize: 14 },
     root: {
       minHeight: '100vh',
       background: 'linear-gradient(180deg, #060d1a 0%, #0a1428 50%, #060d1a 100%)',
