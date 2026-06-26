@@ -26,7 +26,7 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 | Frontend | React + Vite |
 | Backend | Node.js + Express |
 | AI | OpenRouter (any model) |
-| Data | Gigaverse REST API |
+| Data | Gigaverse API |
 | Deploy | Railway |
 
 ---
