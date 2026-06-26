@@ -524,8 +524,10 @@ export default function App() {
                         </div>
                       </div>
                       <div style={{ padding: '10px 12px 12px' }}>
-                        {item.generatedName && <div style={{ fontSize: 9, color: item.faction && item.faction !== 'None' ? item.factionColor : '#e8f0ff', letterSpacing: '0.06em', textAlign: 'center', textShadow: item.faction && item.faction !== 'None' ? `0 0 8px ${item.factionColor}60` : 'none' }}>{item.generatedName.toUpperCase()}</div>
-                        <div style={{ fontSize: 7, textAlign: 'center', marginBottom: 6, letterSpacing: '0.06em' }}><span style={{ color: '#fff' }}>#</span><span style={{ color: item.faction && item.faction !== 'None' ? item.factionColor : '#8090a0' }}>{item.rawId}</span></div>}
+                        {item.generatedName && <>
+                          <div style={{ fontSize: 9, color: item.faction && item.faction !== 'None' ? item.factionColor : '#e8f0ff', letterSpacing: '0.06em', textAlign: 'center', textShadow: item.faction && item.faction !== 'None' ? `0 0 8px ${item.factionColor}60` : 'none' }}>{item.generatedName.toUpperCase()}</div>
+                          <div style={{ fontSize: 7, textAlign: 'center', marginBottom: 6, letterSpacing: '0.06em' }}><span style={{ color: '#fff' }}>#</span><span style={{ color: item.faction && item.faction !== 'None' ? item.factionColor : '#8090a0' }}>{item.rawId}</span></div>
+                        </>}
                         <div style={{ display: 'flex', justifyContent: 'space-around', padding: '5px 0', marginBottom: 8, borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                           {[['ELO', item.stats?.elo, '#00e5ff'], ['WINS', item.stats?.wins, '#40d080'], ['POD', item.stats?.podiums, '#ffb030']].map(([l, v, c]) => (
                             <div key={l} style={{ textAlign: 'center' }}>
