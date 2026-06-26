@@ -249,8 +249,8 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         ref={cardRef}
         style={{
           position: 'relative', width: 380,
-          background: factionColor && faction !== 'None' ? `linear-gradient(180deg, ${factionColor}18 0%, #091528 25%, #091528 100%)` : 'linear-gradient(180deg, #0d1535 0%, #060a18 100%)',
-          border: `2px solid ${factionColor && faction !== 'None' ? factionColor : '#4a4a5a'}`,
+          background: factionColor && faction !== 'None' ? `linear-gradient(180deg, ${factionColor}22 0%, #060a14 20%, #060a14 100%)` : 'linear-gradient(180deg, #0d1535 0%, #050810 100%)',
+          border: `2px solid ${factionColor && faction !== 'None' ? factionColor : '#3a3a4a'}`,
           boxShadow: `0 0 60px rgba(0,100,255,0.12), 0 0 120px rgba(0,60,200,0.07), inset 0 1px 0 rgba(255,255,255,0.06)${factionColor && faction !== 'None' ? ', inset 0 0 60px ' + factionColor + '18' : ''}`,
           animation: 'cardAppear 0.45s cubic-bezier(0.22,1,0.36,1)',
           overflow: 'hidden',
@@ -261,7 +261,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
 
 
         {/* Pet image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 70%, ${factionColor}88 0%, ${factionColor}33 40%, #060d1a 75%)` : 'linear-gradient(180deg, #0f1d42 0%, #080e20 70%, #060a18 100%)', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 65%, ${factionColor}cc 0%, ${factionColor}55 35%, #060d1a 70%)` : 'linear-gradient(180deg, #0f1d42 0%, #080e20 70%, #060a18 100%)', overflow: 'hidden' }}>
           
           <PetImage imgUrl={petImgUrl} />
           <div style={{ position: 'absolute', top: 12, left: 14, fontSize: 13, color: '#ff2020', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(255,32,32,0.6)' }}>{petId}</div>
