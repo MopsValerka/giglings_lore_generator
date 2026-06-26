@@ -163,26 +163,15 @@ function CopyCardBtn({ cardRef }) {
         logging: false,
         imageTimeout: 10000,
       });
-      canvas.toBlob(async (blob) => {
-        if (!blob) { setStatus('error'); setTimeout(() => setStatus('idle'), 2000); return; }
-        // Пробуем clipboard API
-        try {
-          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-          setStatus('done');
-        } catch {
-          // Фолбек — скачать файл
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'gigling-lore.png';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-          setStatus('done');
-        }
-        setTimeout(() => setStatus('idle'), 2500);
-      }, 'image/png');
+      const url = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'gigling-lore.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setStatus('done');
+      setTimeout(() => setStatus('idle'), 2500);
     } catch (e) {
       console.error('html2canvas error:', e);
       setStatus('error');
@@ -190,7 +179,7 @@ function CopyCardBtn({ cardRef }) {
     }
   };
 
-  const label = { idle: '⎘ COPY CARD', loading: '...', done: '✓ COPIED', error: 'ERROR' }[status];
+  const label = { idle: '⎘ SAVE CARD', loading: '...', done: '✓ SAVED', error: 'ERROR' }[status];
   const color = { idle: '#8090a0', loading: '#506070', done: '#40d080', error: '#ff4444' }[status];
   const border = { idle: 'rgba(255,255,255,0.12)', loading: 'rgba(255,255,255,0.06)', done: '#40d080', error: '#ff4444' }[status];
 
@@ -252,7 +241,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
       >
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(100,180,255,0.5), transparent)' }}/>
 
-        <button onClick={onClose} style={{ position: 'absolute', top: 12, right: 14, zIndex: 10, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#8090a0', width: 28, height: 28, cursor: 'pointer', fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+
 
         {/* Pet image */}
         <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: '#060d1a', overflow: 'hidden' }}>
@@ -413,22 +402,22 @@ export default function App() {
     },
     leftPanel: { flex: '0 0 360px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 22, letterSpacing: '0.05em', color: '#c0c8d8' },
-    sideText: { fontSize: 22, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Bitcell', 'Courier New', monospace" },
+    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 19, letterSpacing: '0.05em', color: '#c0c8d8' },
+    sideText: { fontSize: 19, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Bitcell', 'Courier New', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
-      color: '#e0f0ff', padding: '16px 17px', fontSize: 22,
+      color: '#e0f0ff', padding: '16px 17px', fontSize: 19,
       letterSpacing: '0.08em', textTransform: 'uppercase', outline: 'none', marginTop: 4,
     },
     genBtn: {
       width: '100%', background: 'none', border: '1px solid #e0e0e0',
-      color: '#e0e0e0', padding: '16px', fontSize: 22,
+      color: '#e0e0e0', padding: '16px', fontSize: 19,
       letterSpacing: '0.1em', textTransform: 'uppercase',
       cursor: 'pointer', marginTop: 4, transition: 'all 0.2s',
     },
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
-    whatIs: { fontSize: 22, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#00e5ff', marginBottom: 14 },
+    whatIs: { fontSize: 19, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#00e5ff', marginBottom: 14 },
     inscPage: { flex: 1, padding: '30px 40px', maxWidth: 900, margin: '0 auto', width: '100%', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
@@ -469,7 +458,7 @@ export default function App() {
                 BUT DID YOU ALSO KNEW THAT EVERY GIGLINGS HAS OWN UNIQUE <span style={s.lore}>LORE</span>?
               </div>
               <div>
-                <div style={{ marginBottom: 8, fontSize: 22, color: '#507090', letterSpacing: '0.08em' }}>ENTER YOUR GIGLING #</div>
+                <div style={{ marginBottom: 8, fontSize: 19, color: '#507090', letterSpacing: '0.08em' }}>ENTER YOUR GIGLING #</div>
                 <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
@@ -505,7 +494,7 @@ export default function App() {
 
         ) : (
           <div style={s.inscPage}>
-            <div style={{ fontSize: 22, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16, borderBottom: '1px solid #1a3050', paddingBottom: 12 }}>
+            <div style={{ fontSize: 19, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16, borderBottom: '1px solid #1a3050', paddingBottom: 12 }}>
               VIEW <span style={s.lore}>INSCRIPTIONS</span>
             </div>
 
