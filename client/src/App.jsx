@@ -155,22 +155,16 @@ function CopyCardBtn({ cardRef }) {
     if (!cardRef.current) { console.log("cardRef is null"); return; }
     setStatus('loading');
     try {
-      // Клонируем за экраном — убираем влияние backdrop-filter оверлея
-      const clone = cardRef.current.cloneNode(true);
-      clone.style.position = 'fixed';
-      clone.style.top = '-9999px';
-      clone.style.left = '-9999px';
-      clone.style.width = cardRef.current.offsetWidth + 'px';
-      document.body.appendChild(clone);
-      const canvas = await html2canvas(clone, {
+      // Захватываем оригинал напрямую — backdrop-filter убран, линий нет
+      // cloneNode не работает с canvas (пиксели не копируются)
+      const canvas = await html2canvas(cardRef.current, {
         useCORS: true,
         allowTaint: true,
-        backgroundColor: '#091528',
+        backgroundColor: '#161020',
         scale: 2,
         logging: false,
         imageTimeout: 10000,
       });
-      document.body.removeChild(clone);
       canvas.toBlob(async (blob) => {
         try {
           await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
