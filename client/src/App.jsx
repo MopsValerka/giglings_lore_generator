@@ -131,7 +131,7 @@ function PetImage({ imgUrl }) {
       src={imgUrl}
       alt="Gigling"
       onError={() => setFailed(true)}
-      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '80%', height: '80%', objectFit: 'contain', imageRendering: 'pixelated', filter: 'drop-shadow(0 0 20px rgba(80,140,255,0.35))' }}
+      style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '85%', height: 'auto', objectFit: 'contain', imageRendering: 'pixelated', filter: 'drop-shadow(0 0 20px rgba(80,140,255,0.35))' }}
     />
   );
 }
@@ -243,7 +243,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         onClick={e => e.stopPropagation()}
         style={{
           position: 'relative', width: 380,
-          background: 'linear-gradient(160deg, #0d1f38 0%, #091528 60%, #060f20 100%)',
+          background: `linear-gradient(160deg, ${factionColor && faction !== 'None' ? factionColor + '22' : '#0d1f38'} 0%, #091528 60%, #060f20 100%)`,
           border: '1px solid rgba(100,160,255,0.2)',
           boxShadow: '0 0 60px rgba(0,100,255,0.12), 0 0 120px rgba(0,60,200,0.07), inset 0 1px 0 rgba(255,255,255,0.06)',
           animation: 'cardAppear 0.45s cubic-bezier(0.22,1,0.36,1)',
@@ -256,7 +256,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
 
         {/* Pet image */}
         <div style={{ position: 'relative', width: '100%', paddingTop: '78%', background: '#060d1a', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 60%, rgba(60,100,220,0.18) 0%, transparent 70%)' }}/>
+          
           <PetImage imgUrl={petImgUrl} />
           <div style={{ position: 'absolute', top: 12, left: 14, fontSize: 13, color: '#ff2020', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(255,32,32,0.6)' }}>{petId}</div>
           <div style={{ position: 'absolute', top: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -298,12 +298,9 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
             {lore}
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 22, height: 22, imageRendering: 'pixelated' }}/>
-              <span style={{ fontSize: 11, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
-            </div>
-            <CopyCardBtn cardRef={cardRef} />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 22, height: 22, imageRendering: 'pixelated' }}/>
+            <span style={{ fontSize: 11, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
           </div>
         </div>
       </div>
@@ -418,18 +415,18 @@ export default function App() {
     sideText: { fontSize: 22, textTransform: 'none', letterSpacing: '0.02em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Bitcell', 'Courier New', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
-      color: '#e0f0ff', padding: '16px 17px', fontSize: 18,
+      color: '#e0f0ff', padding: '16px 17px', fontSize: 22,
       letterSpacing: '0.08em', textTransform: 'uppercase', outline: 'none', marginTop: 4,
     },
     genBtn: {
       width: '100%', background: 'none', border: '1px solid #e0e0e0',
-      color: '#e0e0e0', padding: '16px', fontSize: 18,
+      color: '#e0e0e0', padding: '16px', fontSize: 22,
       letterSpacing: '0.1em', textTransform: 'uppercase',
       cursor: 'pointer', marginTop: 4, transition: 'all 0.2s',
     },
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
-    whatIs: { fontSize: 20, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#00e5ff', marginBottom: 14 },
+    whatIs: { fontSize: 22, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#00e5ff', marginBottom: 14 },
     inscPage: { flex: 1, padding: '30px 40px', maxWidth: 900, margin: '0 auto', width: '100%', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
@@ -470,7 +467,7 @@ export default function App() {
                 BUT DID YOU ALSO KNEW THAT EVERY GIGLINGS HAS OWN UNIQUE <span style={s.lore}>LORE</span>?
               </div>
               <div>
-                <div style={{ marginBottom: 8, fontSize: 20, color: '#507090', letterSpacing: '0.08em' }}>ENTER YOUR GIGLING #</div>
+                <div style={{ marginBottom: 8, fontSize: 22, color: '#507090', letterSpacing: '0.08em' }}>ENTER YOUR GIGLING #</div>
                 <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
