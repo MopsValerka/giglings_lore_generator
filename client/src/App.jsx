@@ -249,7 +249,7 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         ref={cardRef}
         style={{
           position: 'relative', width: 380,
-          background: factionColor && faction !== 'None' ? '#091528' : 'linear-gradient(180deg, #0d1535 0%, #060a18 100%)',
+          background: factionColor && faction !== 'None' ? `linear-gradient(180deg, ${factionColor}18 0%, #091528 25%, #091528 100%)` : 'linear-gradient(180deg, #0d1535 0%, #060a18 100%)',
           border: `2px solid ${factionColor && faction !== 'None' ? factionColor : '#4a4a5a'}`,
           boxShadow: `0 0 60px rgba(0,100,255,0.12), 0 0 120px rgba(0,60,200,0.07), inset 0 1px 0 rgba(255,255,255,0.06)${factionColor && faction !== 'None' ? ', inset 0 0 60px ' + factionColor + '18' : ''}`,
           animation: 'cardAppear 0.45s cubic-bezier(0.22,1,0.36,1)',
@@ -533,36 +533,37 @@ export default function App() {
               const q = inscSearch.trim().replace(/^#/, '');
               const filtered = q ? inscriptions.filter(i => i.id.replace('#','').includes(q)) : inscriptions;
               if (!filtered.length) return <div style={{ textAlign: 'center', color: '#507090', padding: '40px 0', fontSize: 13, letterSpacing: '0.08em' }}>NOT FOUND</div>;
-              return filtered.map((item, i) => (
-                <div key={item.id + i}
-                  onClick={() => setLoreCard({ petId: item.id, rawId: item.rawId, petName: item.petName, petImgUrl: item.petImgUrl, stats: item.stats, rarity: item.rarity, faction: item.faction, factionColor: item.factionColor, lore: item.lore, generatedName: item.generatedName })}
-                  style={{ cursor: 'pointer', border: `2px solid ${item.faction && item.faction !== 'None' ? item.factionColor : '#4a4a5a'}`, background: factionBg(item), borderRadius: 8, overflow: 'hidden', width: 380, margin: '0 auto 32px', boxShadow: item.faction && item.faction !== 'None' ? `0 0 30px ${item.factionColor}66, 0 0 60px ${item.factionColor}33` : '0 0 20px rgba(74,74,90,0.3)', position: 'relative' }}>
-                  <div style={{ position: 'relative', width: '100%', paddingTop: '65%', background: item.faction && item.faction !== 'None' ? `radial-gradient(ellipse at 50% 70%, ${item.factionColor}88 0%, ${item.factionColor}33 40%, #060d1a 75%)` : 'linear-gradient(180deg, #0f1d42 0%, #080e20 70%, #060a18 100%)', overflow: 'hidden' }}>
-                    {item.petImgUrl && <img src={item.petImgUrl} alt={item.id} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '75%', height: 'auto', objectFit: 'contain', imageRendering: 'pixelated', filter: 'brightness(1.15) contrast(1.08) saturate(1.2)' }} onError={e => { e.target.style.display='none'; }}/>}
-                    <div style={{ position: 'absolute', top: 10, left: 12, fontSize: 12, color: '#ff2020', letterSpacing: '0.1em' }}>{item.id}</div>
-                    <div style={{ position: 'absolute', top: 10, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6 }}>
-                      {item.rarity && <span style={{ fontSize: 9, color: item.factionColor ?? '#8090a0', border: `1px solid ${item.factionColor ?? '#8090a0'}`, padding: '2px 7px', letterSpacing: '0.1em' }}>{item.rarity.toUpperCase()}</span>}
-                      {item.faction && <span style={{ fontSize: 9, color: item.faction !== 'None' ? item.factionColor : '#506070', border: `1px solid ${item.faction !== 'None' ? item.factionColor : '#506070'}`, padding: '2px 7px', letterSpacing: '0.1em' }}>{item.faction.toUpperCase()}</span>}
-                    </div>
-                  </div>
-                  <div style={{ padding: '14px 18px 16px' }}>
-                    {item.generatedName && <div style={{ fontSize: 16, color: item.faction && item.faction !== 'None' ? item.factionColor : '#e8f0ff', letterSpacing: '0.1em', marginBottom: 12, textAlign: 'center', textShadow: item.faction && item.faction !== 'None' ? `0 0 12px ${item.factionColor}60` : 'none' }}>{item.generatedName.toUpperCase()}</div>}
-                    <div style={{ display: 'flex', justifyContent: 'space-around', padding: '8px 0', marginBottom: 12, borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                      {[['ELO', item.stats?.elo, '#00e5ff'], ['RACES', item.stats?.racesRun, '#c0d0e0'], ['WINS', item.stats?.wins, '#40d080'], ['PODIUMS', item.stats?.podiums, '#ffb030']].map(([l, v, c]) => (
-                        <div key={l} style={{ textAlign: 'center' }}>
-                          <div style={{ fontSize: 15, color: c }}>{v ?? '—'}</div>
-                          <div style={{ fontSize: 8, color: '#506070', letterSpacing: '0.1em', marginTop: 2 }}>{l}</div>
+              return (
+                <div style={{ display: 'flex', flexDirection: 'row', gap: 16, overflowX: 'auto', paddingBottom: 16 }}>
+                  {filtered.map((item, i) => (
+                    <div key={item.id + i}
+                      onClick={() => setLoreCard({ petId: item.id, rawId: item.rawId, petName: item.petName, petImgUrl: item.petImgUrl, stats: item.stats, rarity: item.rarity, faction: item.faction, factionColor: item.factionColor, lore: item.lore, generatedName: item.generatedName })}
+                      style={{ cursor: 'pointer', flexShrink: 0, width: 200, border: `2px solid ${item.faction && item.faction !== 'None' ? item.factionColor : '#4a4a5a'}`, background: item.faction && item.faction !== 'None' ? `linear-gradient(180deg, ${item.factionColor}18 0%, #091528 25%, #091528 100%)` : 'linear-gradient(180deg, #0d1535 0%, #060a18 100%)', borderRadius: 8, overflow: 'hidden', boxShadow: item.faction && item.faction !== 'None' ? `0 0 20px ${item.factionColor}55` : '0 0 10px rgba(74,74,90,0.3)' }}>
+                      <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: item.faction && item.faction !== 'None' ? `radial-gradient(ellipse at 50% 70%, ${item.factionColor}88 0%, ${item.factionColor}22 50%, #060d1a 80%)` : 'linear-gradient(180deg, #0f1d42 0%, #060a18 100%)', overflow: 'hidden' }}>
+                        {item.petImgUrl && <img src={item.petImgUrl} alt={item.id} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '80%', height: 'auto', objectFit: 'contain', imageRendering: 'pixelated' }} onError={e => { e.target.style.display='none'; }}/>}
+                        <div style={{ position: 'absolute', top: 8, left: 10, fontSize: 10, color: '#ff2020', letterSpacing: '0.08em' }}>{item.id}</div>
+                        <div style={{ position: 'absolute', top: 8, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 4 }}>
+                          {item.rarity && <span style={{ fontSize: 7, color: item.factionColor ?? '#8090a0', border: `1px solid ${item.factionColor ?? '#8090a0'}`, padding: '1px 5px', letterSpacing: '0.06em' }}>{item.rarity.toUpperCase()}</span>}
+                          {item.faction && <span style={{ fontSize: 7, color: item.faction !== 'None' ? item.factionColor : '#506070', border: `1px solid ${item.faction !== 'None' ? item.factionColor : '#506070'}`, padding: '1px 5px' }}>{item.faction.toUpperCase()}</span>}
                         </div>
-                      ))}
+                      </div>
+                      <div style={{ padding: '10px 12px 12px' }}>
+                        {item.generatedName && <div style={{ fontSize: 9, color: item.faction && item.faction !== 'None' ? item.factionColor : '#e8f0ff', letterSpacing: '0.06em', marginBottom: 8, textAlign: 'center', textShadow: item.faction && item.faction !== 'None' ? `0 0 8px ${item.factionColor}60` : 'none' }}>{item.generatedName.toUpperCase()}</div>}
+                        <div style={{ display: 'flex', justifyContent: 'space-around', padding: '5px 0', marginBottom: 8, borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                          {[['ELO', item.stats?.elo, '#00e5ff'], ['WINS', item.stats?.wins, '#40d080'], ['POD', item.stats?.podiums, '#ffb030']].map(([l, v, c]) => (
+                            <div key={l} style={{ textAlign: 'center' }}>
+                              <div style={{ fontSize: 13, color: c }}>{v ?? '—'}</div>
+                              <div style={{ fontSize: 7, color: '#506070', letterSpacing: '0.08em', marginTop: 1 }}>{l}</div>
+                            </div>
+                          ))}
+                        </div>
+                        <div style={{ fontSize: 8, lineHeight: 1.6, color: '#8099b0', fontFamily: "'Silkscreen', monospace", display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{item.lore}</div>
+                        <div style={{ fontSize: 8, color: '#304860', marginTop: 6, textAlign: 'right', letterSpacing: '0.06em' }}>{item.date}</div>
+                      </div>
                     </div>
-                    <div style={{ fontSize: 14, lineHeight: 1.85, color: '#c8dcea', fontFamily: "'Silkscreen', monospace", marginBottom: 16 }}>{item.lore}</div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                      <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 18, height: 18, imageRendering: 'pixelated' }}/>
-                      <span style={{ fontSize: 9, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ));
+              );
             })()}
           </div>
         )}
