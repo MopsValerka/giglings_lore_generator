@@ -245,6 +245,10 @@ function GiglingCard({ petId, rawId, petImgUrl, stats, rarity, faction, factionC
     <div style={{ width: W, background: '#161020', border: `2px solid ${fc}`, borderRadius: 8, overflow: 'hidden', boxShadow: faction && faction !== 'None' ? `0 0 ${compact ? 16 : 30}px ${fc}66` : 'none' }}>
       {/* Картинка */}
       <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: imageBg, overflow: 'hidden' }}>
+        {/* Статичные партиклы — одинаковы и на экране и в копии */}
+        {[{x:12,y:15,c:'#6030c0',s:compact?8:16},{x:78,y:10,c:'#00b8c8',s:compact?10:20},{x:18,y:70,c:'#7040d0',s:compact?7:14},{x:85,y:45,c:'#00c0d8',s:compact?9:18},{x:30,y:85,c:'#6030c0',s:compact?8:16},{x:70,y:80,c:'#9050e0',s:compact?10:20},{x:50,y:8,c:'#00a0b8',s:compact?8:16},{x:88,y:72,c:'#00b0d0',s:compact?8:16}].map((p,i) => (
+          <div key={i} style={{ position:'absolute', left:`${p.x}%`, top:`${p.y}%`, width:p.s, height:p.s, color:p.c, fontSize:p.s, lineHeight:1, userSelect:'none', pointerEvents:'none' }}>✦</div>
+        ))}
         {petImgUrl && <img src={petImgUrl} alt="" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '80%', height: 'auto', objectFit: 'contain', imageRendering: 'pixelated', filter: 'brightness(1.1) contrast(1.05)' }} onError={e => { e.target.style.display='none'; }}/>}
         <div style={{ position: 'absolute', top: compact ? 6 : 10, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4 }}>
           {rarity && <span style={{ fontSize: S.rarity, color: rarityColor, border: `1px solid ${rarityColor}`, padding: compact ? '1px 4px' : '2px 8px', letterSpacing: '0.06em' }}>{rarity.toUpperCase()}</span>}
@@ -531,9 +535,9 @@ export default function App() {
               const filtered = q ? inscriptions.filter(i => i.id.replace('#','').includes(q)) : inscriptions;
               if (!filtered.length) return <div style={{ textAlign: 'center', color: '#507090', padding: '40px 0', fontSize: 13, letterSpacing: '0.08em' }}>NOT FOUND</div>;
               return (
-                <div style={{ display: 'flex', flexDirection: 'row', gap: 16, overflowX: 'auto', paddingBottom: 16 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 20 }}>
                   {filtered.map((item, i) => (
-                    <div key={item.id + i} style={{ flexShrink: 0, cursor: 'pointer' }}
+                    <div key={item.id + i} style={{ cursor: 'pointer' }}
                       onClick={() => setLoreCard({ petId: item.id, rawId: item.rawId, petName: item.petName, petImgUrl: item.petImgUrl, stats: item.stats, rarity: item.rarity, faction: item.faction, factionColor: item.factionColor, lore: item.lore, generatedName: item.generatedName })}>
                       <GiglingCard petId={item.id} rawId={item.rawId} petImgUrl={item.petImgUrl} stats={item.stats} rarity={item.rarity} faction={item.faction} factionColor={item.factionColor} lore={item.lore} generatedName={item.generatedName} compact={true} />
                     </div>
