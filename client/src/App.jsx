@@ -228,91 +228,69 @@ function FactionBadge({ faction, factionColor }) {
 
 function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, factionColor, lore, generatedName, onClose }) {
   const cardRef = useRef(null);
-  const winRate = (stats.racesRun && stats.wins) ? Math.round((stats.wins / stats.racesRun) * 100) : 0;
-  const hasStats = stats.racesRun != null || stats.wins != null || stats.elo != null;
+  const fc = faction && faction !== 'None' ? factionColor : '#4a4a5a';
+  const imageBg = faction && faction !== 'None'
+    ? `radial-gradient(ellipse at 50% 65%, ${factionColor}cc 0%, ${factionColor}55 35%, #060d1a 70%)`
+    : 'linear-gradient(180deg, #0f1d42 0%, #060a18 100%)';
 
   return (
-    <div
-      onClick={onClose}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 100,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: 'rgba(0,0,0,0.92)',
-        animation: 'overlayIn 0.4s ease',
-        padding: 16,
-      }}
-    >
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.92)', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-      <div
-        ref={cardRef}
-        style={{
-          position: 'relative', width: 380,
-          background: '#161020',
-          border: `2px solid ${factionColor && faction !== 'None' ? factionColor : '#3a3a4a'}`,
-          boxShadow: `0 0 60px rgba(0,100,255,0.12), 0 0 120px rgba(0,60,200,0.07), inset 0 1px 0 rgba(255,255,255,0.06)${factionColor && faction !== 'None' ? ', inset 0 0 60px ' + factionColor + '18' : ''}`,
-          animation: 'cardAppear 0.45s cubic-bezier(0.22,1,0.36,1)',
-          overflow: 'hidden',
-        }}
-      >
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(100,180,255,0.5), transparent)' }}/>
+        <div ref={cardRef} style={{ width: 340, background: '#161020', border: `2px solid ${fc}`, borderRadius: 8, overflow: 'hidden', boxShadow: faction && faction !== 'None' ? `0 0 30px ${factionColor}66` : 'none' }}>
 
-
-
-        {/* Pet image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: factionColor && faction !== 'None' ? `radial-gradient(ellipse at 50% 65%, ${factionColor}cc 0%, ${factionColor}55 35%, #060d1a 70%)` : 'linear-gradient(180deg, #0f1d42 0%, #080e20 70%, #060a18 100%)', overflow: 'hidden' }}>
-          
-          <PetImage imgUrl={petImgUrl} />
-          <div style={{ position: 'absolute', top: 12, left: 14, fontSize: 13, color: '#ff2020', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(255,32,32,0.6)' }}>{petId}</div>
-          <div style={{ position: 'absolute', top: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <RarityBadge rarity={rarity} />
-            <FactionBadge faction={faction} factionColor={factionColor} />
-          </div>
-        </div>
-
-        {/* Content */}
-        <div style={{ padding: '16px 20px 20px' }}>
-          {generatedName && (
-            <div style={{ fontSize: 14, color: (faction && faction !== 'None') ? factionColor : '#e8f0ff', letterSpacing: '0.1em', marginBottom: 12, textAlign: 'center', textShadow: (faction && faction !== 'None') ? `0 0 12px ${factionColor}60` : 'none' }}>
-              {generatedName.toUpperCase()}
+          {/* Картинка */}
+          <div style={{ position: 'relative', width: '100%', paddingTop: '100%', background: imageBg, overflow: 'hidden' }}>
+            <PetImage imgUrl={petImgUrl} />
+            <div style={{ position: 'absolute', top: 10, left: 12, fontSize: 12, color: '#ff2020', letterSpacing: '0.1em' }}>{petId}</div>
+            <div style={{ position: 'absolute', top: 10, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 6 }}>
+              <RarityBadge rarity={rarity} />
+              <FactionBadge faction={faction} factionColor={factionColor} />
             </div>
-          )}
+          </div>
 
-          {/* Stats */}
-          <div style={{ display: 'flex', justifyContent: 'space-around', padding: '10px 0', marginBottom: hasStats ? 14 : 4, borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-            {[
-              { label: 'ELO',     value: stats.elo      != null ? stats.elo              : '—', color: '#00e5ff' },
-              { label: 'RACES',   value: stats.racesRun  != null ? stats.racesRun         : '—', color: '#c0d0e0' },
-              { label: 'WINS',    value: stats.wins      != null ? stats.wins             : '—', color: '#40d080' },
-              { label: 'PODIUMS', value: stats.podiums   != null ? stats.podiums          : '—', color: '#ffb030' },
-            ].map(st => (
-              <div key={st.label} style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 17, color: st.color, letterSpacing: '0.05em' }}>{st.value}</div>
-                <div style={{ fontSize: 9, color: '#506070', letterSpacing: '0.12em', marginTop: 2 }}>{st.label}</div>
+          {/* Контент */}
+          <div style={{ padding: '14px 18px 16px' }}>
+            {/* Имя + номер */}
+            {generatedName && (
+              <div style={{ textAlign: 'center', marginBottom: 12 }}>
+                <div style={{ fontSize: 14, color: faction && faction !== 'None' ? factionColor : '#e8f0ff', letterSpacing: '0.1em', textShadow: faction && faction !== 'None' ? `0 0 12px ${factionColor}60` : 'none' }}>
+                  {generatedName.toUpperCase()}
+                </div>
+                <div style={{ fontSize: 11, marginTop: 3, letterSpacing: '0.08em' }}>
+                  <span style={{ color: '#ffffff' }}>#</span>
+                  <span style={{ color: faction && faction !== 'None' ? factionColor : '#8090a0' }}>{String(rawId).padStart(4,'0')}</span>
+                </div>
               </div>
-            ))}
-          </div>
+            )}
 
-          {!hasStats && (
-            <div style={{ fontSize: 10, color: '#304860', textAlign: 'center', marginBottom: 12, letterSpacing: '0.06em' }}>
-              STATS UNAVAILABLE
+            {/* Статы */}
+            <div style={{ display: 'flex', justifyContent: 'space-around', padding: '8px 0', marginBottom: 12, borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+              {[['ELO', stats.elo, '#00e5ff'], ['RACES', stats.racesRun, '#c0d0e0'], ['WINS', stats.wins, '#40d080'], ['PODIUMS', stats.podiums, '#ffb030']].map(([l, v, c]) => (
+                <div key={l} style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 15, color: c }}>{v ?? '—'}</div>
+                  <div style={{ fontSize: 8, color: '#506070', letterSpacing: '0.1em', marginTop: 2 }}>{l}</div>
+                </div>
+              ))}
             </div>
-          )}
 
-          <div style={{ fontSize: 14, lineHeight: 1.85, color: '#c8dcea', letterSpacing: '0.01em', marginBottom: 18, minHeight: 60, fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontWeight: 400 }}>
-            {lore}
-          </div>
+            {/* Лор */}
+            <div style={{ fontSize: 12, lineHeight: 1.85, color: '#c8dcea', fontFamily: "'Silkscreen', monospace", marginBottom: 14 }}>
+              {lore}
+            </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-            <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 22, height: 22, imageRendering: 'pixelated' }}/>
-            <span style={{ fontSize: 11, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
+            {/* Футер */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+              <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 20, height: 20, imageRendering: 'pixelated' }}/>
+              <span style={{ fontSize: 10, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
+            </div>
           </div>
         </div>
-      </div>
         <CopyCardBtn cardRef={cardRef} />
       </div>
     </div>
   );
 }
+
 
 // ── MAIN APP ──────────────────────────────────────────────────────────
 function factionBg(item) {
@@ -546,7 +524,8 @@ export default function App() {
                         </div>
                       </div>
                       <div style={{ padding: '10px 12px 12px' }}>
-                        {item.generatedName && <div style={{ fontSize: 9, color: item.faction && item.faction !== 'None' ? item.factionColor : '#e8f0ff', letterSpacing: '0.06em', marginBottom: 8, textAlign: 'center', textShadow: item.faction && item.faction !== 'None' ? `0 0 8px ${item.factionColor}60` : 'none' }}>{item.generatedName.toUpperCase()}</div>}
+                        {item.generatedName && <div style={{ fontSize: 9, color: item.faction && item.faction !== 'None' ? item.factionColor : '#e8f0ff', letterSpacing: '0.06em', textAlign: 'center', textShadow: item.faction && item.faction !== 'None' ? `0 0 8px ${item.factionColor}60` : 'none' }}>{item.generatedName.toUpperCase()}</div>
+                        <div style={{ fontSize: 7, textAlign: 'center', marginBottom: 6, letterSpacing: '0.06em' }}><span style={{ color: '#fff' }}>#</span><span style={{ color: item.faction && item.faction !== 'None' ? item.factionColor : '#8090a0' }}>{item.rawId}</span></div>}
                         <div style={{ display: 'flex', justifyContent: 'space-around', padding: '5px 0', marginBottom: 8, borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                           {[['ELO', item.stats?.elo, '#00e5ff'], ['WINS', item.stats?.wins, '#40d080'], ['POD', item.stats?.podiums, '#ffb030']].map(([l, v, c]) => (
                             <div key={l} style={{ textAlign: 'center' }}>
