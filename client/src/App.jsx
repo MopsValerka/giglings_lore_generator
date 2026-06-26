@@ -238,9 +238,9 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
         padding: 16,
       }}
     >
+      <div onClick={e => e.stopPropagation()} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
       <div
         ref={cardRef}
-        onClick={e => e.stopPropagation()}
         style={{
           position: 'relative', width: 380,
           background: `linear-gradient(160deg, ${factionColor && faction !== 'None' ? factionColor + '22' : '#0d1f38'} 0%, #091528 60%, #060f20 100%)`,
@@ -303,6 +303,8 @@ function LoreCard({ petId, rawId, petName, petImgUrl, stats, rarity, faction, fa
             <span style={{ fontSize: 11, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
           </div>
         </div>
+      </div>
+        <CopyCardBtn cardRef={cardRef} />
       </div>
     </div>
   );
