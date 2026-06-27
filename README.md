@@ -46,7 +46,6 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 giglings-lore/
 ├── server.js              # Express backend — Gigaverse API proxy + OpenRouter lore gen + Redis
 ├── package.json           # Root package (build + start scripts for Railway)
-├── .env.example           # Environment variables template
 └── client/                # React frontend (Vite)
     ├── index.html
     ├── vite.config.js     # Proxies /api → localhost:3001 in dev
