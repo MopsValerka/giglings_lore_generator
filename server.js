@@ -160,14 +160,15 @@ const REDIS_URL   = process.env.UPSTASH_REDIS_URL;
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_TOKEN;
 
 async function redisCmd(...args) {
-  if (!REDIS_URL) return null;
+  if (!REDIS_URL) { console.log('[Redis] No URL configured'); return null; }
+  console.log(`[Redis] calling ${REDIS_URL} cmd=${args[0]}`);
   const r = await fetch(REDIS_URL, {
     method: 'POST',
     headers: { Authorization: `Bearer ${REDIS_TOKEN}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(args),
   });
   const data = await r.json();
-  console.log(`[Redis] ${args[0]}:`, JSON.stringify(data).slice(0, 100));
+  console.log(`[Redis] ${args[0]} result:`, JSON.stringify(data).slice(0, 200));
   return data.result;
 }
 
