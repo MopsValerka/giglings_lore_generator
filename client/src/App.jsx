@@ -87,10 +87,10 @@ function Sparkle({ x, y, color, size, delay }) {
 
 function MysteriousGigling() {
   return (
-    <div style={{ position: 'relative', width: 320, height: 320, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
+    <div style={{ position: 'relative', width: 420, height: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
       {SPARKLE_DATA.map((s, i) => <Sparkle key={i} {...s} />)}
       <img src={`data:image/png;base64,${GIGLING_B64}`} alt="Mysterious Gigling"
-        style={{ width: 240, height: 240, imageRendering: 'pixelated', objectFit: 'contain' }}
+        style={{ width: 310, height: 310, imageRendering: 'pixelated', objectFit: 'contain' }}
       />
     </div>
   );
@@ -432,14 +432,10 @@ export default function App() {
       flexDirection: 'column', fontSize: 13, letterSpacing: '0.05em',
     },
     header: {
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '10px 24px', borderBottom: '1px solid #1a3050',
       background: 'rgba(6,13,26,0.9)', backdropFilter: 'blur(4px)',
       position: 'sticky', top: 0, zIndex: 10,
-    },
-    headerInner: {
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      width: '100%', maxWidth: 1280,
     },
     inscBtn: {
       background: 'none', border: '1px solid #00e5ff', color: '#00e5ff',
@@ -449,15 +445,11 @@ export default function App() {
     },
     body: {
       flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-      padding: '30px 20px', position: 'relative',
+      gap: 32, padding: '30px 20px', position: 'relative',
     },
-    bodyInner: {
-      display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-      gap: 32, width: '100%', maxWidth: 1020,
-    },
-    leftPanel: { flex: '0 0 280px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
-    centerPanel: { flex: '0 0 340px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 280px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
+    leftPanel: { flex: '0 0 400px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
+    centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
+    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
     sideText: { fontSize: 14, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
@@ -485,7 +477,6 @@ export default function App() {
 
         {/* HEADER */}
         <header style={s.header}>
-          <div style={s.headerInner}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 40, height: 40, imageRendering: 'pixelated' }}/>
             <span style={{ fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
@@ -498,7 +489,6 @@ export default function App() {
             onMouseLeave={e => e.target.style.background = 'none'}>
             {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
           </button>
-          </div>
         </header>
 
         {view === 'main' && (
@@ -509,7 +499,6 @@ export default function App() {
 
         {view === 'main' ? (
           <div style={s.body}>
-          <div style={s.bodyInner}>
             {/* LEFT */}
             <div style={s.leftPanel}>
               <div style={s.sideText}>
@@ -548,7 +537,6 @@ export default function App() {
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
             </div>
-          </div>
           </div>
 
         ) : (
