@@ -6,6 +6,14 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 
 **Built for GIGATHON hackathon.**
 
+🔗 **Live:** [giglings-lore.up.railway.app](https://giglings-lore.up.railway.app)
+
+---
+
+<p align="center">
+  <img src="./docs/card-example.jpg" alt="Gigling lore card — Flash Gordon #16916, Legendary Overseer" width="320" />
+</p>
+
 ---
 
 ## What it does
@@ -14,7 +22,7 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 - Generates a unique name based on the Gigling's profile
 - Generates a short lore fragment legend
 - Displays the Gigling's actual NFT image, faction, rarity and racing stats
-- Saves all generated lore in a searchable inscriptions archive
+- Saves all generated lore in a searchable inscriptions archive. Stores on Upstash Redis
 - Copy button for easy lore card sharing
 
 ---
@@ -26,7 +34,8 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 | Frontend | React + Vite |
 | Backend | Node.js + Express |
 | AI | OpenRouter (any model) |
-| Data | Gigaverse API |
+| Data | Gigaverse Racing API |
+| Storage | Upstash Redis |
 | Deploy | Railway |
 
 ---
@@ -35,7 +44,7 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 
 ```
 giglings-lore/
-├── server.js              # Express backend — fetches Gigaverse API + generates lore via OpenRouter
+├── server.js              # Express backend — Gigaverse API proxy + OpenRouter lore gen + Redis
 ├── package.json           # Root package (build + start scripts for Railway)
 ├── .env.example           # Environment variables template
 └── client/                # React frontend (Vite)
@@ -44,9 +53,10 @@ giglings-lore/
     ├── package.json
     └── src/
         ├── main.jsx       # React entry point
-        └── App.jsx        # Full UI — lore card, inscriptions, faction badges
+        └── App.jsx        # Full UI — GiglingCard component, inscriptions grid, faction badges
     └── public/
-        └── factions/      # Faction icon PNGs (archon.png, athena.png, etc.)
+        ├── factions/      # Faction icon PNGs (archon.png, athena.png, chobo.png, ...)
+        └── fonts/         # Bitcell.ttf (unused; Silkscreen loaded from Google Fonts)
 ```
 
 ---
@@ -58,6 +68,8 @@ giglings-lore/
 | Endpoint | Description |
 |----------|-------------|
 | `GET /api/lore/:petId` | Fetch stats + generate name and lore for a Gigling |
+| `GET /api/inscriptions` | Return all saved inscriptions from Redis (newest first) |
+| `POST /api/inscriptions` | Save a new inscription to Redis |
 
 **Gigaverse Racing API (`https://gigaverse.io/api/racing`):**
 
