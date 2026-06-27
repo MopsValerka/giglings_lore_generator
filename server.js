@@ -201,7 +201,7 @@ app.post('/api/inscriptions', async (req, res) => {
     await redisSet('inscriptions', updated);
     res.json({ ok: true });
   } catch (e) {
-    console.error('Redis error:', e.message);
+    console.error('Redis error:', e.message, e.cause?.message || e.cause || '');
     res.status(500).json({ error: e.message });
   }
 });
