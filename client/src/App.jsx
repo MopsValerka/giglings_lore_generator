@@ -352,7 +352,6 @@ export default function App() {
   const [inscriptions, setInscriptions] = useState([]);
   const [inscSearch, setInscSearch] = useState('');
 
-  // Загружаем инскрипции с сервера при старте
   useEffect(() => {
     fetch('/api/inscriptions')
       .then(r => r.json())
