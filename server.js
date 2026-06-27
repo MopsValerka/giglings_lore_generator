@@ -155,6 +155,53 @@ Rules:
   }
 });
 
+// ── Upstash Redis ─────────────────────────────────────────────────────
+const REDIS_URL   = process.env.UPSTASH_REDIS_URL;
+const REDIS_TOKEN = process.env.UPSTASH_REDIS_TOKEN;
+
+async function redisGet(key) {
+  if (!REDIS_URL) return null;
+  const r = await fetch(`${REDIS_URL}/get/${key}`, {
+    headers: { Authorization: `Bearer ${REDIS_TOKEN}` }
+  });
+  const data = await r.json();
+  return data.result ? JSON.parse(data.result) : null;
+}
+
+async function redisSet(key, value) {
+  if (!REDIS_URL) return;
+  await fetch(`${REDIS_URL}/set/${key}`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${REDIS_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(JSON.stringify(value))
+  });
+}
+
+// GET /api/inscriptions — все инскрипции
+app.get('/api/inscriptions', async (req, res) => {
+  try {
+    const inscriptions = await redisGet('inscriptions') || [];
+    res.json({ inscriptions });
+  } catch (e) {
+    res.json({ inscriptions: [] });
+  }
+});
+
+// POST /api/inscriptions — добавить новую
+app.post('/api/inscriptions', async (req, res) => {
+  try {
+    const item = req.body;
+    if (!item || !item.id) return res.status(400).json({ error: 'Invalid inscription' });
+    const current = await redisGet('inscriptions') || [];
+    const updated = [item, ...current].slice(0, 1000); // макс 100
+    await redisSet('inscriptions', updated);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('Redis error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.get('/health', (_, res) => res.json({ ok: true, model: OR_MODEL }));
 
 app.use(express.static(path.join(__dirname, 'dist')));
