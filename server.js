@@ -159,22 +159,25 @@ Rules:
 const REDIS_URL   = process.env.UPSTASH_REDIS_URL;
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_TOKEN;
 
-async function redisGet(key) {
+async function redisCmd(...args) {
   if (!REDIS_URL) return null;
-  const r = await fetch(`${REDIS_URL}/get/${key}`, {
-    headers: { Authorization: `Bearer ${REDIS_TOKEN}` }
+  const r = await fetch(REDIS_URL, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${REDIS_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(args),
   });
   const data = await r.json();
-  return data.result ? JSON.parse(data.result) : null;
+  console.log(`[Redis] ${args[0]}:`, JSON.stringify(data).slice(0, 100));
+  return data.result;
+}
+
+async function redisGet(key) {
+  const result = await redisCmd('GET', key);
+  return result ? JSON.parse(result) : null;
 }
 
 async function redisSet(key, value) {
-  if (!REDIS_URL) return;
-  await fetch(`${REDIS_URL}/set/${key}`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${REDIS_TOKEN}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(JSON.stringify(value))
-  });
+  await redisCmd('SET', key, JSON.stringify(value));
 }
 
 // GET /api/inscriptions — все инскрипции
