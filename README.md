@@ -6,7 +6,7 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 
 **Built for GIGATHON hackathon.**
 
-🔗 **Live:** [giglings-lore.up.railway.app](https://giglings-lore-generator.up.railway.app)
+🔗 **[giglings-lore.up.railway.app](https://giglings-lore-generator.up.railway.app)**
 
 ---
 
