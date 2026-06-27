@@ -6,12 +6,12 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 
 **Built for GIGATHON hackathon.**
 
-🔗 **Live:** [giglings-lore.up.railway.app](https://giglings-lore.up.railway.app)
+🔗 **Live:** [giglings-lore.up.railway.app](https://giglings-lore-generator.up.railway.app)
 
 ---
 
 <p align="center">
-  <img src="./docs/card-example.jpg" alt="Gigling lore card — Flash Gordon #16916, Legendary Overseer" width="320" />
+  <img src="./docs/card-example.jpeg" alt="Gigling lore card — Flash Gordon #16916, Legendary Overseer" width="320" />
 </p>
 
 ---
