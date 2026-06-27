@@ -453,11 +453,11 @@ export default function App() {
     },
     bodyInner: {
       display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-      gap: 32, width: '100%', maxWidth: 1280,
+      gap: 40, width: '100%', maxWidth: 1200,
     },
-    leftPanel: { flex: '0 0 340px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
-    centerPanel: { flex: '1 1 400px', minWidth: 320, maxWidth: 480, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 300px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
+    leftPanel: { flex: '0 0 320px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
+    centerPanel: { flex: '0 0 380px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
+    rightPanel: { flex: '0 0 320px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
     sideText: { fontSize: 14, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
