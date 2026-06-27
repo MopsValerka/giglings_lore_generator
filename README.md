@@ -11,7 +11,7 @@ Enter any Gigling ID and get a unique AI-generated name + lore based on its real
 ---
 
 <p align="center">
-  <img src="./docs/card-example.jpeg" alt="Gigling lore card — Flash Gordon #16916, Legendary Overseer" width="320" />
+  <img src="client/docs/card-example.jpeg" alt="Gigling lore card — Flash Gordon #16916, Legendary Overseer" width="320" />
 </p>
 
 ---
