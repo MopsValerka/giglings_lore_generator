@@ -535,7 +535,7 @@ export default function App() {
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
             </div>
           </div>
 
