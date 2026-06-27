@@ -432,10 +432,14 @@ export default function App() {
       flexDirection: 'column', fontSize: 13, letterSpacing: '0.05em',
     },
     header: {
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '10px 24px', borderBottom: '1px solid #1a3050',
       background: 'rgba(6,13,26,0.9)', backdropFilter: 'blur(4px)',
       position: 'sticky', top: 0, zIndex: 10,
+    },
+    headerInner: {
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      width: '100%', maxWidth: 1280,
     },
     inscBtn: {
       background: 'none', border: '1px solid #00e5ff', color: '#00e5ff',
@@ -445,11 +449,15 @@ export default function App() {
     },
     body: {
       flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-      gap: 32, padding: '30px 20px', position: 'relative',
+      padding: '30px 20px', position: 'relative',
     },
-    leftPanel: { flex: '0 0 400px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
-    centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
+    bodyInner: {
+      display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+      gap: 32, width: '100%', maxWidth: 1280,
+    },
+    leftPanel: { flex: '0 0 340px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
+    centerPanel: { flex: '1 1 400px', minWidth: 320, maxWidth: 480, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
+    rightPanel: { flex: '0 0 300px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
     sideText: { fontSize: 14, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
@@ -465,7 +473,7 @@ export default function App() {
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
     whatIs: { fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Silkscreen', monospace" },
-    inscPage: { flex: 1, padding: '30px 40px', width: '100%', animation: 'fadeIn 0.4s ease' },
+    inscPage: { flex: 1, padding: '30px 40px', width: '100%', maxWidth: 1280, margin: '0 auto', boxSizing: 'border-box', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
 
@@ -477,6 +485,7 @@ export default function App() {
 
         {/* HEADER */}
         <header style={s.header}>
+          <div style={s.headerInner}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 40, height: 40, imageRendering: 'pixelated' }}/>
             <span style={{ fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
@@ -489,6 +498,7 @@ export default function App() {
             onMouseLeave={e => e.target.style.background = 'none'}>
             {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
           </button>
+          </div>
         </header>
 
         {view === 'main' && (
@@ -499,6 +509,7 @@ export default function App() {
 
         {view === 'main' ? (
           <div style={s.body}>
+          <div style={s.bodyInner}>
             {/* LEFT */}
             <div style={s.leftPanel}>
               <div style={s.sideText}>
@@ -537,6 +548,7 @@ export default function App() {
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
             </div>
+          </div>
           </div>
 
         ) : (
