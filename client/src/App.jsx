@@ -87,10 +87,10 @@ function Sparkle({ x, y, color, size, delay }) {
 
 function MysteriousGigling() {
   return (
-    <div style={{ position: 'relative', width: 420, height: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
+    <div style={{ position: 'relative', width: 320, height: 320, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
       {SPARKLE_DATA.map((s, i) => <Sparkle key={i} {...s} />)}
       <img src={`data:image/png;base64,${GIGLING_B64}`} alt="Mysterious Gigling"
-        style={{ width: 310, height: 310, imageRendering: 'pixelated', objectFit: 'contain' }}
+        style={{ width: 240, height: 240, imageRendering: 'pixelated', objectFit: 'contain' }}
       />
     </div>
   );
@@ -453,11 +453,11 @@ export default function App() {
     },
     bodyInner: {
       display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-      gap: 40, width: '100%', maxWidth: 1200,
+      gap: 32, width: '100%', maxWidth: 1020,
     },
-    leftPanel: { flex: '0 0 320px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
-    centerPanel: { flex: '0 0 380px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 320px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
+    leftPanel: { flex: '0 0 280px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
+    centerPanel: { flex: '0 0 340px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
+    rightPanel: { flex: '0 0 280px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
     sideText: { fontSize: 14, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
