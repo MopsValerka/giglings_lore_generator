@@ -55,7 +55,7 @@ giglings-lore/
         └── App.jsx        # Full UI — GiglingCard component, inscriptions grid, faction badges
     └── public/
         ├── factions/      # Faction icon PNGs (archon.png, athena.png, chobo.png, ...)
-        └── fonts/         # Bitcell.ttf (unused; Silkscreen loaded from Google Fonts)
+        └── fonts/         # Bitcell.ttf
 ```
 
 ---
