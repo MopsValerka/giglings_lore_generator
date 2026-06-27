@@ -87,10 +87,10 @@ function Sparkle({ x, y, color, size, delay }) {
 
 function MysteriousGigling() {
   return (
-    <div style={{ position: 'relative', width: 420, height: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
+    <div style={{ position: 'relative', width: 'clamp(340px, 28vw, 520px)', height: 'clamp(340px, 28vw, 520px)', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
       {SPARKLE_DATA.map((s, i) => <Sparkle key={i} {...s} />)}
       <img src={`data:image/png;base64,${GIGLING_B64}`} alt="Mysterious Gigling"
-        style={{ width: 310, height: 310, imageRendering: 'pixelated', objectFit: 'contain' }}
+        style={{ width: 'clamp(250px, 21vw, 390px)', height: 'clamp(250px, 21vw, 390px)', imageRendering: 'pixelated', objectFit: 'contain' }}
       />
     </div>
   );
@@ -445,12 +445,12 @@ export default function App() {
     },
     body: {
       flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-      gap: 32, padding: '30px 20px', position: 'relative',
+      gap: 'clamp(20px, 2.5vw, 50px)', padding: '30px 20px', position: 'relative',
     },
-    leftPanel: { flex: '0 0 400px', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
-    centerPanel: { flex: '0 0 432px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { flex: '0 0 360px', padding: '10px 0', lineHeight: 1.9, fontSize: 14, letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
-    sideText: { fontSize: 14, textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
+    leftPanel: { flex: '0 0 clamp(300px, 26vw, 480px)', padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
+    centerPanel: { flex: '0 0 clamp(340px, 28vw, 540px)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
+    rightPanel: { flex: '0 0 clamp(280px, 24vw, 440px)', padding: '10px 0', lineHeight: 1.9, fontSize: 'clamp(12px, 0.9vw, 16px)', letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
+    sideText: { fontSize: 'clamp(12px, 0.9vw, 16px)', textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
       color: '#e0f0ff', padding: '14px 17px', fontSize: 14, fontFamily: "'Silkscreen', monospace",
@@ -492,7 +492,7 @@ export default function App() {
         </header>
 
         {view === 'main' && (
-          <div style={{ textAlign: 'center', padding: '22px 0 8px', fontSize: 38, letterSpacing: '0.12em', textTransform: 'uppercase', position: 'relative' }}>
+          <div style={{ textAlign: 'center', padding: '22px 0 8px', fontSize: 'clamp(28px, 2.5vw, 56px)', letterSpacing: '0.12em', textTransform: 'uppercase', position: 'relative' }}>
             GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
           </div>
         )}
