@@ -349,18 +349,16 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [loreCard, setLoreCard] = useState(null);
   const [error, setError] = useState('');
-  const [inscriptions, setInscriptions] = useState(() => {
-    try {
-      const saved = localStorage.getItem('giglings_inscriptions');
-      return saved ? JSON.parse(saved) : [];
-    } catch { return []; }
-  });
+  const [inscriptions, setInscriptions] = useState([]);
   const [inscSearch, setInscSearch] = useState('');
 
+  // Загружаем инскрипции с сервера при старте
   useEffect(() => {
-    try { localStorage.setItem('giglings_inscriptions', JSON.stringify(inscriptions)); }
-    catch { }
-  }, [inscriptions]);
+    fetch('/api/inscriptions')
+      .then(r => r.json())
+      .then(data => { if (data.inscriptions) setInscriptions(data.inscriptions); })
+      .catch(() => {});
+  }, []);
   const inputRef = useRef(null);
 
   const handleGenerate = async () => {
@@ -394,7 +392,7 @@ export default function App() {
 
       // ── Show card + save inscription ─────────────────────────────────
       setLoreCard({ petId: displayId, rawId: petId, petName, petImgUrl, stats, rarity, faction, factionColor, lore, generatedName });
-      setInscriptions(prev => [{
+      const newItem = {
         id: displayId,
         rawId: petId,
         date: new Date().toISOString().split('T')[0],
@@ -407,7 +405,14 @@ export default function App() {
         lore,
         petName,
         generatedName,
-      }, ...prev]);
+      };
+      setInscriptions(prev => [newItem, ...prev]);
+      // Сохраняем на сервер
+      fetch('/api/inscriptions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newItem),
+      }).catch(() => {});
       setGiglingId('');
 
     } catch (e) {
@@ -502,7 +507,7 @@ export default function App() {
               </div>
               <div>
                 <div style={{ marginBottom: 8, fontSize: 14, color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
-                <input ref={inputRef} style={s.input} placeholder="e.g. 7777"
+                <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
                   onKeyDown={handleKeyDown} maxLength={6}
@@ -528,10 +533,10 @@ export default function App() {
             <div style={s.rightPanel}>
               <div style={s.whatIs}>WHAT IS GIGLING RACING?</div>
               <p style={{ margin: '0 0 14px', fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 14, lineHeight: 1.9 }}>
-                Race your Gigling - a lovable two-legged horse - against other players onchain, for stakes or for fun.
+                Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
             </div>
           </div>
 
