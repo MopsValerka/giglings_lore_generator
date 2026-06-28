@@ -429,10 +429,10 @@ export default function App() {
       minHeight: '100vh',
       background: 'linear-gradient(180deg, #060d1a 0%, #0a1428 50%, #060d1a 100%)',
       color: '#e0e0e0', position: 'relative', display: 'flex',
-      flexDirection: 'column', fontSize: 13, letterSpacing: '0.05em',
+      flexDirection: 'column', alignItems: 'center', fontSize: 13, letterSpacing: '0.05em',
     },
     header: {
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      alignSelf: 'stretch', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       padding: '10px 9vw', borderBottom: '1px solid #1a3050',
       background: 'rgba(6,13,26,0.9)', backdropFilter: 'blur(4px)',
       position: 'sticky', top: 0, zIndex: 10, boxSizing: 'border-box',
@@ -448,7 +448,7 @@ export default function App() {
       animation: 'glow-cyan 3s ease-in-out infinite', transition: 'background 0.2s',
     },
     body: {
-      flex: 1, padding: '30px 9vw', position: 'relative', boxSizing: 'border-box',
+      flex: 1, width: '82vw', padding: '30px 0', position: 'relative',
     },
     innerBody: {
       display: 'flex', alignItems: 'flex-start', gap: '2vw', width: '100%',
