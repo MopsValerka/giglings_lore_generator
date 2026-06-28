@@ -312,9 +312,9 @@ function GiglingCard({ petId, rawId, petImgUrl, stats, rarity, faction, factionC
         {compact && <div style={{ fontSize: 7, color: '#304860', textAlign: 'right', letterSpacing: '0.06em' }}>{new Date().toISOString().split('T')[0]}</div>}
 
         {/* Футер (только full) */}
-        {!compact && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ display: 'block', width: 12, height: 12, imageRendering: 'pixelated' }}/>
-          <span style={{ height: 12, display: 'flex', alignItems: 'center', fontSize: 10, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
+        {!compact && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 16, gap: 6, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 12, height: 12, imageRendering: 'pixelated' }}/>
+          <span style={{ fontSize: 10, color: '#c0d0e0', letterSpacing: '0.15em' }}>GIGAVERSE</span>
         </div>}
       </div>
     </div>
@@ -484,10 +484,10 @@ export default function App() {
 
         {/* HEADER */}
         <header style={s.header}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ display: 'block', width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated' }}/>
-            <span style={{ height: 'max(28px, 2.1vw)', display: 'flex', alignItems: 'center', fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-              GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'max(28px, 2.1vw)', gap: 10 }}>
+            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated' }}/>
+            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+              GIGLINGS&nbsp;<span style={s.lore}>LORE</span>&nbsp;GENERATOR
             </span>
           </div>
           <button style={s.inscBtn}
@@ -543,10 +543,10 @@ export default function App() {
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
-                <span style={{ height: 'max(22px, 1.7vw)', display: 'flex', alignItems: 'center', fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span>
-                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ display: 'block', width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated' }}/>
-                <span style={{ height: 'max(22px, 1.7vw)', display: 'flex', alignItems: 'center', fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', height: 'max(22px, 1.7vw)', gap: 8, margin: 0 }}>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span>
+                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated' }}/>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span>
               </div>
             </div>
             </div>
