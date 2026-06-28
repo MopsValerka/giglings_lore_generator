@@ -486,7 +486,7 @@ export default function App() {
         <header style={s.header}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ display: 'block', width: 'max(32px, 2.6vw)', height: 'max(32px, 2.6vw)', imageRendering: 'pixelated' }}/>
-            <span style={{ lineHeight: 1, fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            <span style={{ lineHeight: 'max(32px, 2.6vw)', fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'inline-flex', alignItems: 'center' }}>
               GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
             </span>
           </div>
@@ -543,7 +543,11 @@ export default function App() {
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><span style={{ lineHeight: 1, fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ display: 'block', width: 'max(24px, 2vw)', height: 'max(24px, 2vw)', imageRendering: 'pixelated' }}/><span style={{ lineHeight: 1, fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 'max(24px, 2vw)', fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span>
+                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ display: 'block', width: 'max(24px, 2vw)', height: 'max(24px, 2vw)', imageRendering: 'pixelated' }}/>
+                <span style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 'max(24px, 2vw)', fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span>
+              </div>
             </div>
             </div>
           </div>
