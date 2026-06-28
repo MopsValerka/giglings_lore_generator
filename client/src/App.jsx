@@ -485,9 +485,9 @@ export default function App() {
 
         {/* HEADER */}
         <header style={s.header}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', height: 'max(28px, 2.1vw)', gap: 10 }}>
             <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block' }}/>
-            <span style={{ fontSize: 'max(11px, 0.9vw)', lineHeight: 'max(28px, 2.1vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            <span style={{ position: 'absolute', left: 'calc(max(28px, 2.1vw) + 10px)', top: '50%', transform: 'translateY(-50%)', fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', whiteSpace: 'nowrap' }}>
               GIGLINGS&nbsp;<span style={s.lore}>LORE</span>&nbsp;GENERATOR
             </span>
           </div>
