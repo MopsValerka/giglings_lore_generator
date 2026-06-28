@@ -442,11 +442,10 @@ export default function App() {
       width: '82vw',
     },
     inscBtn: {
-      position: 'relative',
       WebkitAppearance: 'none', appearance: 'none',
       background: 'none', border: '1px solid #00e5ff', color: '#00e5ff',
-      height: 'max(36px, 2.8vw)', width: 'max(180px, 14vw)',
-      cursor: 'pointer', fontSize: 'max(10px, 0.78vw)', lineHeight: 1,
+      padding: '0.83em 18px 0.26em',
+      cursor: 'pointer', fontSize: 'max(10px, 0.78vw)',
       letterSpacing: '0.08em', textTransform: 'uppercase',
       animation: 'glow-cyan 3s ease-in-out infinite', transition: 'background 0.2s',
     },
@@ -488,7 +487,7 @@ export default function App() {
         <header style={s.header}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
-            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', transform: 'translateY(4px)', display: 'inline-block' }}>
               GIGLINGS&nbsp;<span style={s.lore}>LORE</span>&nbsp;GENERATOR
             </span>
           </div>
@@ -496,9 +495,7 @@ export default function App() {
             onClick={() => setView(v => v === 'main' ? 'inscriptions' : 'main')}
             onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,229,255,0.1)'}
             onMouseLeave={e => e.currentTarget.style.background = 'none'}>
-            <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', whiteSpace: 'nowrap' }}>
-              {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
-            </span>
+            {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
           </button>
         </header>
 
@@ -548,9 +545,9 @@ export default function App() {
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', transform: 'translateY(4px)', display: 'inline-block' }}>BUILT BY</span>
                 <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', transform: 'translateY(4px)', display: 'inline-block' }}>GIGAVERSE</span>
               </div>
             </div>
             </div>
