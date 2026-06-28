@@ -486,8 +486,8 @@ export default function App() {
         {/* HEADER */}
         <header style={s.header}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0, transform: 'translateY(6px)' }}/>
-            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
+            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'inline-block', transform: 'translateY(-6px)' }}>
               GIGLINGS&nbsp;<span style={s.lore}>LORE</span>&nbsp;GENERATOR
             </span>
           </div>
@@ -545,9 +545,9 @@ export default function App() {
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span>
-                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0, transform: 'translateY(3px)' }}/>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', display: 'inline-block', transform: 'translateY(-3px)' }}>BUILT BY</span>
+                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', display: 'inline-block', transform: 'translateY(-3px)' }}>GIGAVERSE</span>
               </div>
             </div>
             </div>
