@@ -432,10 +432,10 @@ export default function App() {
       flexDirection: 'column', fontSize: 13, letterSpacing: '0.05em',
     },
     header: {
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '10px 24px', borderBottom: '1px solid #1a3050',
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      padding: '10px 9vw', borderBottom: '1px solid #1a3050',
       background: 'rgba(6,13,26,0.9)', backdropFilter: 'blur(4px)',
-      position: 'sticky', top: 0, zIndex: 10,
+      position: 'sticky', top: 0, zIndex: 10, boxSizing: 'border-box',
     },
     headerInner: {
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -448,11 +448,10 @@ export default function App() {
       animation: 'glow-cyan 3s ease-in-out infinite', transition: 'background 0.2s',
     },
     body: {
-      flex: 1, display: 'block', padding: '30px 0', position: 'relative',
+      flex: 1, padding: '30px 9vw', position: 'relative', boxSizing: 'border-box',
     },
     innerBody: {
-      display: 'flex', alignItems: 'flex-start', gap: '2vw',
-      width: '82vw', margin: '0 auto',
+      display: 'flex', alignItems: 'flex-start', gap: '2vw', width: '100%',
     },
     leftPanel: { width: '30%', minWidth: 0, padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { width: '35%', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
@@ -484,20 +483,18 @@ export default function App() {
 
         {/* HEADER */}
         <header style={s.header}>
-          <div style={s.headerInner}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(32px, 2.6vw)', height: 'max(32px, 2.6vw)', imageRendering: 'pixelated' }}/>
-              <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
-              </span>
-            </div>
-            <button style={s.inscBtn}
-              onClick={() => setView(v => v === 'main' ? 'inscriptions' : 'main')}
-              onMouseEnter={e => e.target.style.background = 'rgba(0,229,255,0.1)'}
-              onMouseLeave={e => e.target.style.background = 'none'}>
-              {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
-            </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(32px, 2.6vw)', height: 'max(32px, 2.6vw)', imageRendering: 'pixelated' }}/>
+            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+              GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
+            </span>
           </div>
+          <button style={s.inscBtn}
+            onClick={() => setView(v => v === 'main' ? 'inscriptions' : 'main')}
+            onMouseEnter={e => e.target.style.background = 'rgba(0,229,255,0.1)'}
+            onMouseLeave={e => e.target.style.background = 'none'}>
+            {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
+          </button>
         </header>
 
         {view === 'main' && (
