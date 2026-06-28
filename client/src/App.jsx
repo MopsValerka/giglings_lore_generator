@@ -445,8 +445,8 @@ export default function App() {
       display: 'grid', placeItems: 'center',
       WebkitAppearance: 'none', appearance: 'none',
       background: 'none', border: '1px solid #00e5ff', color: '#00e5ff',
-      paddingTop: 10, paddingBottom: 6, paddingLeft: 18, paddingRight: 18,
-      cursor: 'pointer', fontSize: 'max(10px, 0.78vw)', lineHeight: 1,
+      padding: '8px 18px',
+      cursor: 'pointer', fontSize: 'max(10px, 0.78vw)',
       letterSpacing: '0.08em', textTransform: 'uppercase',
       animation: 'glow-cyan 3s ease-in-out infinite', transition: 'background 0.2s',
     },
@@ -488,7 +488,7 @@ export default function App() {
         <header style={s.header}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
-            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', lineHeight: 1 }}>
+            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
               GIGLINGS&nbsp;<span style={s.lore}>LORE</span>&nbsp;GENERATOR
             </span>
           </div>
@@ -546,9 +546,9 @@ export default function App() {
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', lineHeight: 1 }}>BUILT BY</span>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span>
                 <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', lineHeight: 1 }}>GIGAVERSE</span>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span>
               </div>
             </div>
             </div>
