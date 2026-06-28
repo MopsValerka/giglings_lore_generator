@@ -485,9 +485,9 @@ export default function App() {
 
         {/* HEADER */}
         <header style={s.header}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'max(28px, 2.1vw) auto', alignItems: 'center', height: 'max(28px, 2.1vw)', gap: 10 }}>
-            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block' }}/>
-            <span style={{ lineHeight: 'max(28px, 2.1vw)', fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'grid', placeItems: 'center start' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
+            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', lineHeight: 1 }}>
               GIGLINGS&nbsp;<span style={s.lore}>LORE</span>&nbsp;GENERATOR
             </span>
           </div>
@@ -544,10 +544,10 @@ export default function App() {
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'auto max(22px, 1.7vw) auto', alignItems: 'center', height: 'max(22px, 1.7vw)', gap: 8, margin: 0 }}>
-                <span style={{ lineHeight: 'max(22px, 1.7vw)', fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', display: 'grid', placeItems: 'center start' }}>BUILT BY</span>
-                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block' }}/>
-                <span style={{ lineHeight: 'max(22px, 1.7vw)', fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', display: 'grid', placeItems: 'center start' }}>GIGAVERSE</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', lineHeight: 1 }}>BUILT BY</span>
+                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', lineHeight: 1 }}>GIGAVERSE</span>
               </div>
             </div>
             </div>
