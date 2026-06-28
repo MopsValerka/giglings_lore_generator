@@ -432,10 +432,14 @@ export default function App() {
       flexDirection: 'column', fontSize: 13, letterSpacing: '0.05em',
     },
     header: {
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '10px 24px', borderBottom: '1px solid #1a3050',
       background: 'rgba(6,13,26,0.9)', backdropFilter: 'blur(4px)',
       position: 'sticky', top: 0, zIndex: 10,
+    },
+    headerInner: {
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      width: '100%', maxWidth: 'max(900px, 82vw)',
     },
     inscBtn: {
       background: 'none', border: '1px solid #00e5ff', color: '#00e5ff',
@@ -477,18 +481,20 @@ export default function App() {
 
         {/* HEADER */}
         <header style={s.header}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 40, height: 40, imageRendering: 'pixelated' }}/>
-            <span style={{ fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-              GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
-            </span>
+          <div style={s.headerInner}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(32px, 2.6vw)', height: 'max(32px, 2.6vw)', imageRendering: 'pixelated' }}/>
+              <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                GIGLINGS <span style={s.lore}>LORE</span> GENERATOR
+              </span>
+            </div>
+            <button style={s.inscBtn}
+              onClick={() => setView(v => v === 'main' ? 'inscriptions' : 'main')}
+              onMouseEnter={e => e.target.style.background = 'rgba(0,229,255,0.1)'}
+              onMouseLeave={e => e.target.style.background = 'none'}>
+              {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
+            </button>
           </div>
-          <button style={s.inscBtn}
-            onClick={() => setView(v => v === 'main' ? 'inscriptions' : 'main')}
-            onMouseEnter={e => e.target.style.background = 'rgba(0,229,255,0.1)'}
-            onMouseLeave={e => e.target.style.background = 'none'}>
-            {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
-          </button>
         </header>
 
         {view === 'main' && (
@@ -535,7 +541,7 @@ export default function App() {
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 32, height: 32, imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 16, letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: 0 }}><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span><img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(24px, 2vw)', height: 'max(24px, 2vw)', imageRendering: 'pixelated' }}/><span style={{ fontFamily: "'Gigaverse', monospace", fontSize: 'max(12px, 1vw)', letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span></div>
             </div>
           </div>
 
