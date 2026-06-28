@@ -442,9 +442,10 @@ export default function App() {
       width: '82vw',
     },
     inscBtn: {
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
       WebkitAppearance: 'none', appearance: 'none',
       background: 'none', border: '1px solid #00e5ff', color: '#00e5ff',
-      padding: '0.83em 18px 0.26em',
+      padding: '8px 18px',
       cursor: 'pointer', fontSize: 'max(10px, 0.78vw)',
       letterSpacing: '0.08em', textTransform: 'uppercase',
       animation: 'glow-cyan 3s ease-in-out infinite', transition: 'background 0.2s',
