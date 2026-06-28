@@ -87,7 +87,7 @@ function Sparkle({ x, y, color, size, delay }) {
 
 function MysteriousGigling() {
   return (
-    <div style={{ position: 'relative', width: 'min(100%, 430px)', aspectRatio: '1 / 1', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
+    <div style={{ position: 'relative', width: '100%', aspectRatio: '1 / 1', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'float 3s ease-in-out infinite' }}>
       {SPARKLE_DATA.map((s, i) => <Sparkle key={i} {...s} />)}
       <img src={`data:image/png;base64,${GIGLING_B64}`} alt="Mysterious Gigling"
         style={{ width: '74%', height: '74%', imageRendering: 'pixelated', objectFit: 'contain' }}
@@ -460,18 +460,18 @@ export default function App() {
     sideText: { fontSize: 'max(11px, 0.9vw)', textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
-      color: '#e0f0ff', padding: '14px 17px', fontSize: 14, fontFamily: "'Silkscreen', monospace",
+      color: '#e0f0ff', padding: '14px 17px', fontSize: 'max(12px, 0.91vw)', fontFamily: "'Silkscreen', monospace",
       letterSpacing: '0.08em', textTransform: 'uppercase', outline: 'none', marginTop: 4,
     },
     genBtn: {
       width: '100%', background: 'none', border: '1px solid #e0e0e0',
-      color: '#e0e0e0', padding: '14px', fontSize: 14, fontFamily: "'Silkscreen', monospace",
+      color: '#e0e0e0', padding: '14px', fontSize: 'max(12px, 0.91vw)', fontFamily: "'Silkscreen', monospace",
       letterSpacing: '0.1em', textTransform: 'uppercase',
       cursor: 'pointer', marginTop: 4, transition: 'all 0.2s',
     },
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
-    whatIs: { fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Silkscreen', monospace" },
+    whatIs: { fontSize: 'max(12px, 0.91vw)', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Silkscreen', monospace" },
     inscPage: { flex: 1, padding: '30px 40px', width: '100%', maxWidth: 1280, margin: '0 auto', boxSizing: 'border-box', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
@@ -513,7 +513,7 @@ export default function App() {
                 DID YOU KNOW EVERY GIGLING HAS ITS OWN UNIQUE <span style={s.lore}>LORE</span>?
               </div>
               <div>
-                <div style={{ marginBottom: 8, fontSize: 14, color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
+                <div style={{ marginBottom: 8, fontSize: 'max(12px, 0.91vw)', color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
                 <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
@@ -539,7 +539,7 @@ export default function App() {
             {/* RIGHT */}
             <div style={s.rightPanel}>
               <div style={s.whatIs}>WHAT IS GIGLING RACING?</div>
-              <p style={{ margin: '0 0 14px', fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 14, lineHeight: 1.9 }}>
+              <p style={{ margin: '0 0 14px', fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 'max(12px, 0.91vw)', lineHeight: 1.9 }}>
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
