@@ -442,10 +442,10 @@ export default function App() {
       width: '82vw',
     },
     inscBtn: {
-      display: 'grid', placeItems: 'center',
+      position: 'relative',
       WebkitAppearance: 'none', appearance: 'none',
       background: 'none', border: '1px solid #00e5ff', color: '#00e5ff',
-      height: 'max(36px, 2.8vw)', padding: '0 18px',
+      height: 'max(36px, 2.8vw)', width: 'max(180px, 14vw)',
       cursor: 'pointer', fontSize: 'max(10px, 0.78vw)', lineHeight: 1,
       letterSpacing: '0.08em', textTransform: 'uppercase',
       animation: 'glow-cyan 3s ease-in-out infinite', transition: 'background 0.2s',
@@ -494,9 +494,11 @@ export default function App() {
           </div>
           <button style={s.inscBtn}
             onClick={() => setView(v => v === 'main' ? 'inscriptions' : 'main')}
-            onMouseEnter={e => e.target.style.background = 'rgba(0,229,255,0.1)'}
-            onMouseLeave={e => e.target.style.background = 'none'}>
-            {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,229,255,0.1)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'none'}>
+            <span style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', whiteSpace: 'nowrap' }}>
+              {view === 'main' ? 'VIEW INSCRIPTIONS' : '← BACK TO GENERATOR'}
+            </span>
           </button>
         </header>
 
