@@ -304,7 +304,7 @@ function GiglingCard({ petId, rawId, petImgUrl, stats, rarity, faction, factionC
         </div>
 
         {/* Лор */}
-        <div style={{ fontSize: S.lore, lineHeight: compact ? 1.6 : 1.85, color: '#c8dcea', fontFamily: "'Gigaverse', monospace", marginBottom: compact ? 4 : 14, ...(compact ? { display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } : {}) }}>
+        <div style={{ fontSize: S.lore, lineHeight: compact ? 1.6 : 1.85, color: '#c8dcea', fontFamily: "'Silkscreen', monospace", marginBottom: compact ? 4 : 14, ...(compact ? { display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } : {}) }}>
           {lore}
         </div>
 
@@ -457,22 +457,22 @@ export default function App() {
     },
     leftPanel: { width: '32%', minWidth: 0, padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { width: '34%', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
-    rightPanel: { width: '28%', minWidth: 0, padding: '10px 0', lineHeight: 1.9, fontSize: 'max(11px, 0.9vw)', letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Gigaverse', monospace" },
-    sideText: { fontSize: 'max(11px, 0.9vw)', textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Gigaverse', monospace" },
+    rightPanel: { width: '28%', minWidth: 0, padding: '10px 0', lineHeight: 1.9, fontSize: 'max(11px, 0.9vw)', letterSpacing: '0.02em', color: '#c0c8d8', fontFamily: "'Silkscreen', monospace" },
+    sideText: { fontSize: 'max(11px, 0.9vw)', textTransform: 'none', letterSpacing: '0.01em', lineHeight: 1.9, color: '#b0bcc8', fontFamily: "'Silkscreen', monospace" },
     input: {
       width: '100%', background: '#122035', border: '1px solid #1a4060',
-      color: '#e0f0ff', padding: '14px 17px', fontSize: 'max(12px, 0.91vw)', fontFamily: "'Gigaverse', monospace",
+      color: '#e0f0ff', padding: '14px 17px', fontSize: 'max(12px, 0.91vw)', fontFamily: "'Silkscreen', monospace",
       letterSpacing: '0.08em', textTransform: 'uppercase', outline: 'none', marginTop: 4,
     },
     genBtn: {
       width: '100%', background: 'none', border: '1px solid #e0e0e0',
-      color: '#e0e0e0', padding: '14px', fontSize: 'max(12px, 0.91vw)', fontFamily: "'Gigaverse', monospace",
+      color: '#e0e0e0', padding: '14px', fontSize: 'max(12px, 0.91vw)', fontFamily: "'Silkscreen', monospace",
       letterSpacing: '0.1em', textTransform: 'uppercase',
       cursor: 'pointer', marginTop: 4, transition: 'all 0.2s',
     },
     errorText: { color: '#ff6060', fontSize: 12, letterSpacing: '0.06em', marginTop: 6 },
     loadingDots: { textAlign: 'center', color: '#00e5ff', fontSize: 19, letterSpacing: '0.2em', animation: 'blink 1s step-end infinite' },
-    whatIs: { fontSize: 'max(12px, 0.91vw)', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Gigaverse', monospace" },
+    whatIs: { fontSize: 'max(12px, 0.91vw)', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00e5ff', marginBottom: 14, fontFamily: "'Silkscreen', monospace" },
     inscPage: { flex: 1, padding: '30px 40px', width: '100%', maxWidth: 1280, margin: '0 auto', boxSizing: 'border-box', animation: 'fadeIn 0.4s ease' },
     inscCard: { background: '#0a1830', border: '1px solid #1a3050', padding: '14px 18px', marginBottom: 12, transition: 'border-color 0.2s', animation: 'fadeIn 0.4s ease' },
   };
@@ -486,8 +486,8 @@ export default function App() {
         {/* HEADER */}
         <header style={s.header}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
-            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em', transform: 'translateY(-6px)', display: 'inline-block' }}>
+            <img src={`data:image/png;base64,${LOGO_B64}`} alt="Logo" style={{ width: 'max(28px, 2.1vw)', height: 'max(28px, 2.1vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0, transform: 'translateY(6px)' }}/>
+            <span style={{ fontSize: 'max(11px, 0.9vw)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
               GIGLINGS&nbsp;<span style={s.lore}>LORE</span>&nbsp;GENERATOR
             </span>
           </div>
@@ -514,7 +514,7 @@ export default function App() {
                 DID YOU KNOW EVERY GIGLING HAS ITS OWN UNIQUE <span style={s.lore}>LORE</span>?
               </div>
               <div>
-                <div style={{ marginBottom: 8, fontSize: 'max(12px, 0.91vw)', color: '#507090', letterSpacing: '0.04em', fontFamily: "'Gigaverse', monospace" }}>ENTER YOUR GIGLING #</div>
+                <div style={{ marginBottom: 8, fontSize: 'max(12px, 0.91vw)', color: '#507090', letterSpacing: '0.04em', fontFamily: "'Silkscreen', monospace" }}>ENTER YOUR GIGLING #</div>
                 <input ref={inputRef} style={s.input} placeholder="e.g. 1337"
                   value={giglingId}
                   onChange={e => { setGiglingId(e.target.value); setError(''); }}
@@ -540,14 +540,14 @@ export default function App() {
             {/* RIGHT */}
             <div style={s.rightPanel}>
               <div style={s.whatIs}>WHAT IS GIGLING RACING?</div>
-              <p style={{ margin: '0 0 14px', fontFamily: "'Gigaverse', monospace", textTransform: 'none', fontSize: 'max(12px, 0.91vw)', lineHeight: 1.9 }}>
+              <p style={{ margin: '0 0 14px', fontFamily: "'Silkscreen', monospace", textTransform: 'none', fontSize: 'max(12px, 0.91vw)', lineHeight: 1.9 }}>
                 Race your Gigling — a lovable two-legged horse — against other players onchain, for stakes or for fun.
                 Boost yourself, sabotage rivals, and breed smarter champions as every race reveals more about your Gigling.
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', transform: 'translateY(-3px)', display: 'inline-block' }}>BUILT BY</span>
-                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0 }}/>
-                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0', transform: 'translateY(-3px)', display: 'inline-block' }}>GIGAVERSE</span>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>BUILT BY</span>
+                <img src={`data:image/png;base64,${GIGA_LOGO_B64}`} alt="Gigaverse" style={{ width: 'max(22px, 1.7vw)', height: 'max(22px, 1.7vw)', imageRendering: 'pixelated', display: 'block', flexShrink: 0, transform: 'translateY(3px)' }}/>
+                <span style={{ fontSize: 'max(12px, 1vw)', fontFamily: "'Gigaverse', monospace", letterSpacing: '0.1em', color: '#c0d0e0' }}>GIGAVERSE</span>
               </div>
             </div>
             </div>
