@@ -448,11 +448,11 @@ export default function App() {
       animation: 'glow-cyan 3s ease-in-out infinite', transition: 'background 0.2s',
     },
     body: {
-      flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-      padding: '30px 0', position: 'relative',
+      flex: 1, display: 'block', padding: '30px 0', position: 'relative',
     },
     innerBody: {
-      display: 'flex', alignItems: 'flex-start', gap: '2vw', width: '82vw',
+      display: 'flex', alignItems: 'flex-start', gap: '2vw',
+      width: '82vw', margin: '0 auto',
     },
     leftPanel: { width: '30%', minWidth: 0, padding: '10px 0', display: 'flex', flexDirection: 'column', gap: 20 },
     centerPanel: { width: '35%', minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0', position: 'relative' },
